@@ -1,0 +1,753 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Low-Fidelity Prototype </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(134, 131, 126, 1);
+	fill: rgba(134, 131, 126, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="28ee9c88-f1ed-80bb-a905-fc85fac92177" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_orion_nebula.jpg" style="object-position:center 0%"/><h1 class="page-title">Low-Fidelity Prototype </h1><p class="page-description"></p></header><div class="page-body"><h1 id="292e9c88-f1ed-80db-b417-e22cca7c06da" class=""><mark class="highlight-pink_background">Design Concepts</mark></h1><p id="292e9c88-f1ed-80e4-a3d7-d6de353a15cb" class="">For our design concepts, we followed the 10 plus 10 method and sketched out different ideas of for our mirror prototype. </p><p id="292e9c88-f1ed-801c-95c0-f8b52d747c96" class=""><mark class="highlight-blue_background"><strong>Sketches</strong></mark></p><p id="292e9c88-f1ed-80f5-bef0-c51bb763b522" class=""><strong>Iteration 1:</strong></p><figure id="292e9c88-f1ed-80fd-9f70-e6e76dc90751" class="image"><a href="35eb7f31-50bb-4cf1-bc01-e62b5b377339.png"><img style="width:480.4692082111437px" src="35eb7f31-50bb-4cf1-bc01-e62b5b377339.png"/></a></figure><figure id="292e9c88-f1ed-807b-b4f5-d856ca3ef768" class="image"><a href="sketch1.jpg"><img style="width:382.63543701171875px" src="sketch1.jpg"/></a></figure><figure id="292e9c88-f1ed-800e-a0e0-ce83e677eb46" class="image"><a href="sketch1.png"><img style="width:384px" src="sketch1.png"/></a></figure><p id="292e9c88-f1ed-80cf-8a15-f4fb920d9af3" class=""><strong>Iteration 2</strong></p><figure id="292e9c88-f1ed-80df-a72f-c558efe34021" class="image"><a href="sketch2.2.png"><img style="width:384px" src="sketch2.2.png"/></a></figure><figure id="292e9c88-f1ed-80c9-861d-f80b51b7c11a" class="image"><a href="sketch2.1.png"><img style="width:709.9791870117188px" src="sketch2.1.png"/></a></figure><p id="292e9c88-f1ed-8020-9ed2-e37ff6008c0a" class="">
+</p><figure id="292e9c88-f1ed-80c8-8e6a-c05ace348485" class="image"><a href="sketch2.jpg"><img style="width:382.63543701171875px" src="sketch2.jpg"/></a></figure><h1 id="28ee9c88-f1ed-8051-a62b-e8c580ffdf13" class=""><mark class="highlight-orange_background">Paper Prototypes</mark></h1><ul id="28ee9c88-f1ed-80c1-943f-dc4ee967c4e7" class="bulleted-list"><li style="list-style-type:disc">Multiple low-fidelity prototypes, representing important functionality of the proposed system, and well suited to compare across several important design decisions.</li></ul><p id="292e9c88-f1ed-8036-9af1-efd391bbbdad" class="">
+</p><p id="28ee9c88-f1ed-8011-ae93-d89df4ca7a85" class=""><strong>Design Decisions</strong></p><ul id="28ee9c88-f1ed-80a3-aa6a-d311c20f9525" class="bulleted-list"><li style="list-style-type:disc"><strong>Round vs square</strong><ul id="292e9c88-f1ed-803c-bd46-fd5391c1ec0b" class="bulleted-list"><li style="list-style-type:circle">We decided on the squared screen design because of hardware limitations for now.</li></ul></li></ul><ul id="28ee9c88-f1ed-80b3-a31e-da2f43294a86" class="bulleted-list"><li style="list-style-type:disc"><strong>App vs no app</strong><ul id="292e9c88-f1ed-8032-986d-eedc6ae8a6fb" class="bulleted-list"><li style="list-style-type:circle">We decided to have a no app approach since having an app to control some of the features would defeat the purpose of our goal. We would rather have our users have minimal context switching. </li></ul></li></ul><ul id="28ee9c88-f1ed-8024-91c5-fb82667c366d" class="bulleted-list"><li style="list-style-type:disc"><strong>Touch screen vs no touch screen</strong><ul id="292e9c88-f1ed-80e6-8646-fcc8e1587616" class="bulleted-list"><li style="list-style-type:circle">We ultimately decided on no touch screen because our mirror’s original idea is to give the user information. We were torn between adding it for the users’ TODO list but we decided it is better for the user to not waste time on clicking the tasks they completed.</li></ul></li></ul><ul id="292e9c88-f1ed-801f-a97e-cb5937fbd9e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Using a remote</strong><ul id="28ee9c88-f1ed-8042-bbf3-daa8816923a5" class="bulleted-list"><li style="list-style-type:circle">With our no app approach we thus chose to use a remote to interact with the system. It is easy to set up technically, just needs a cheap sensor, and TV remotes are very accessible and familiar to many.</li></ul></li></ul><p id="28ee9c88-f1ed-808b-ac48-d252fa07e13c" class="">
+</p><figure id="28ee9c88-f1ed-800f-bb02-f22d6a3226a9"><div class="source"><a href="Luma_Setup_UI_CutOuts.pdf">Luma Setup UI CutOuts.pdf</a></div></figure><p id="28ee9c88-f1ed-8027-895d-f06f496091f3" class=""><strong>Prototype 1:</strong></p><p id="28ee9c88-f1ed-8068-9b2b-c90d04131cfb" class="">This design of our first prototype contains the following features:</p><ol type="1" id="28ee9c88-f1ed-805e-afbd-df4e8dd16404" class="numbered-list" start="1"><li>Date and Time displayed in top center, similar to how phones display the time</li></ol><ol type="1" id="28ee9c88-f1ed-803d-b7d9-d78993ab20cf" class="numbered-list" start="2"><li>TODOs for the day are resented to the left of the time in the left corner</li></ol><ol type="1" id="28ee9c88-f1ed-802e-ad7e-f1698987c3a2" class="numbered-list" start="3"><li>Weather information is presented on the top right corner to the right of the time.</li></ol><ol type="1" id="28ee9c88-f1ed-80f8-b198-c1633e2c2f0f" class="numbered-list" start="4"><li>Extendable/retractable stand to prop up the mirror</li></ol><ol type="1" id="28ee9c88-f1ed-80d0-9d17-e37e42abbc85" class="numbered-list" start="5"><li>Hinge on the back for optional mirror attachment</li></ol><ol type="1" id="28ee9c88-f1ed-80d2-8abc-f3c500f28a56" class="numbered-list" start="6"><li>USB-C power plug below the hinge to connect it to electricity</li></ol><ol type="1" id="28ee9c88-f1ed-8026-8f51-f29bd14ea167" class="numbered-list" start="7"><li>Settings option on the screen to be able to access the settings option</li></ol><ol type="1" id="28ee9c88-f1ed-808a-bd51-dbdf00e07fbe" class="numbered-list" start="8"><li>Bezels/ a frame for structural reinforcement so that the mirror is more durable</li></ol><p id="28ee9c88-f1ed-808a-a53d-f843f807aa55" class="">
+</p><p id="28ee9c88-f1ed-800a-bfa0-ca90df02915b" class="">The information was chosen to be placed on the top bar of the mirror with the logic of the information being close to each-other makes it easier to find, and frees up the rest of the mirror for unobstructed mirror use. The placement of the date and time was done in a way aiming to be familiar to most users, as it adheres with most computer and smartphone placements of the date and time.</p><p id="28ee9c88-f1ed-80aa-97d2-d704d0f8ed12" class=""><br/>This prototype’s design is to be always on when plugged in.<br/></p><figure id="28ee9c88-f1ed-8060-929a-cfd1531e22e8" class="image"><a href="2025-10-16_210_PM_Microsoft_Lens(3)_3.jpeg"><img style="width:528px" src="2025-10-16_210_PM_Microsoft_Lens(3)_3.jpeg"/></a></figure><figure id="28ee9c88-f1ed-80f2-8caf-d814bbc7dcfd" class="image"><a href="2025-10-16_210_PM_Microsoft_Lens(1)_1.jpeg"><img style="width:528px" src="2025-10-16_210_PM_Microsoft_Lens(1)_1.jpeg"/></a></figure><figure id="28ee9c88-f1ed-8089-8e13-e83162c16464" class="image"><a href="2025-10-16_509_PM_Microsoft_Lens.jpeg"><img style="width:528px" src="2025-10-16_509_PM_Microsoft_Lens.jpeg"/></a></figure><figure id="28ee9c88-f1ed-80c8-bf0d-d66d8b0ca9a2" class="image"><a href="2025-10-16_443_PM_Microsoft_Lens_1.jpeg"><img style="width:528px" src="2025-10-16_443_PM_Microsoft_Lens_1.jpeg"/></a></figure><p id="28ee9c88-f1ed-804a-b660-c2208ed2cb6b" class="">
+</p><p id="292e9c88-f1ed-80ca-90d9-d43c3db823dd" class=""><strong>Prototype 2:</strong></p><p id="292e9c88-f1ed-80c5-85f9-ca833b960310" class="">This design of our second prototype contains the following features:</p><ol type="1" id="292e9c88-f1ed-8048-b698-f1e61a8fac62" class="numbered-list" start="1"><li>Date and Time displayed in top left</li></ol><ol type="1" id="292e9c88-f1ed-80e1-8308-d5328ffcf6c2" class="numbered-list" start="2"><li>TODOs for the day are presented on-command</li></ol><ol type="1" id="292e9c88-f1ed-80fe-a92e-ddec4f2bd51c" class="numbered-list" start="3"><li>Weather information is presented on the top right corner to the right of the time. Weather information also lists city location.</li></ol><ol type="1" id="292e9c88-f1ed-8050-ad85-c80b0e2aee57" class="numbered-list" start="4"><li>Portable stand to prop up the mirror</li></ol><ol type="1" id="292e9c88-f1ed-80ee-9879-e3ec343783e2" class="numbered-list" start="5"><li>USB-C power plug on the lower back.</li></ol><ol type="1" id="292e9c88-f1ed-8093-b778-e06b52674c32" class="numbered-list" start="6"><li>No settings option on the screen, long press remote instead.</li></ol><ol type="1" id="292e9c88-f1ed-808d-8916-c11178f5939a" class="numbered-list" start="7"><li>LED light over bezels. </li></ol><ol type="1" id="292e9c88-f1ed-80cd-9f76-db68efa5b55f" class="numbered-list" start="8"><li>Power button</li></ol><p id="292e9c88-f1ed-805b-9c1b-ef44210a217c" class="">
+</p><p id="292e9c88-f1ed-8011-af62-ea03c4b69d06" class="">Prototype 2 aims to create a calm and minimalist experience by limiting persistent on screen elements and keeping essential information easily accessible. The long press settings access preserves visual simplicity, while the LED light enhances usability during grooming. Its portable design allows flexibility in placement, and the balanced layout supports intuitive morning interactions without overwhelming the user.</p><p id="292e9c88-f1ed-8097-b207-ecdb0f829219" class="">
+</p><figure id="28ee9c88-f1ed-8016-8992-f66f294c6403" class="image"><a href="2025-10-16_204_PM_Microsoft_Lens_6.jpeg"><img style="width:432px" src="2025-10-16_204_PM_Microsoft_Lens_6.jpeg"/></a></figure><figure id="28ee9c88-f1ed-8089-864e-c9909b8a774d" class="image"><a href="2025-10-16_441_PM_Microsoft_Lens(1)_2.jpeg"><img style="width:432px" src="2025-10-16_441_PM_Microsoft_Lens(1)_2.jpeg"/></a></figure><figure id="28ee9c88-f1ed-8037-8e0b-e56a611c4ab2" class="image"><a href="2025-10-16_204_PM_Microsoft_Lens(2)_4.jpeg"><img style="width:432px" src="2025-10-16_204_PM_Microsoft_Lens(2)_4.jpeg"/></a></figure><figure id="28ee9c88-f1ed-8007-8234-fd9fc0963432" class="image"><a href="2025-10-16_204_PM_Microsoft_Lens(3)_3.jpeg"><img style="width:432px" src="2025-10-16_204_PM_Microsoft_Lens(3)_3.jpeg"/></a></figure><figure id="28ee9c88-f1ed-807a-b2cc-c584ee9fa17a" class="image"><a href="2025-10-16_204_PM_Microsoft_Lens(5)_1.jpeg"><img style="width:432px" src="2025-10-16_204_PM_Microsoft_Lens(5)_1.jpeg"/></a></figure><figure id="28ee9c88-f1ed-80a4-95e5-da880bc81cdb" class="image"><a href="2025-10-16_204_PM_Microsoft_Lens(4)_2.jpeg"><img style="width:432px" src="2025-10-16_204_PM_Microsoft_Lens(4)_2.jpeg"/></a></figure><p id="28ee9c88-f1ed-80da-9679-d87e79e72bec" class="">
+</p><hr id="28ee9c88-f1ed-801e-aaa6-c5d44a2f84a3"/><h1 id="28ee9c88-f1ed-80cc-b3bf-d1aa94d42ee5" class=""><mark class="highlight-pink_background">Usability Goals and Benchmark Tasks:</mark></h1><h3 id="28ee9c88-f1ed-8003-9ad3-f30db85b7da0" class="">Usability Goals</h3><p id="28ee9c88-f1ed-8098-ae14-c62e737b0716" class="">We will determine usability goals to evaluate our calm smart mirror design via systematic testing. These goals will evaluate how effectively the system integrates into users’ daily routines while also adhering to calm technology principles. The goals focus on ensuring the mirror delivers value via ambient awareness, minimal cognitive load, and reliable passive operation. The goals are grounded in Nielsen’s 10 Usability Heuristics.<br/></p><ol type="1" id="28ee9c88-f1ed-806e-aa8a-cc10587e0ba8" class="numbered-list" start="1"><li><strong>Aesthetic and Minimalist Design:</strong><ol type="a" id="28ee9c88-f1ed-806e-817f-f48c6575f242" class="numbered-list" start="1"><li>The display must contain only essential information- date, time, weather summary (rain chance, high/low temps), and maximum 5 calendar events for the day-  with zero unnecessary visual features. </li></ol><ol type="a" id="28ee9c88-f1ed-808b-9495-cace68c116b2" class="numbered-list" start="2"><li>We will conduct preference testing comparing minimalist designs, use user feedback to verify if visual hierarchy guides attention to priority information first, and gather feedback on whether any elements feel unnecessary or distracting during morning routines.</li></ol><ol type="a" id="28ee9c88-f1ed-8048-b779-f380d39a2822" class="numbered-list" start="3"><li><em>Rationale: This is our highest priority because it defines the entire philosophy of calm technology. A cluttered mirror defeats its purpose, becoming another attention demanding screen instead of a peripheral information source. Every additional element competes for attention. The mirror should enhance the space, not clutter it with unnecessary information. </em></li></ol></li></ol><ol type="1" id="28ee9c88-f1ed-805f-ab04-ff29686a114a" class="numbered-list" start="2"><li>Familiarity:<ol type="a" id="28ee9c88-f1ed-8003-aa43-d260852c22ea" class="numbered-list" start="1"><li>Users should instantly (within 10 seconds) recognize what information is displayed and understand its meaning through familiar conventions- clock formats, weather icons, and task list structures they’ve encountered in existing applications.</li></ol><ol type="a" id="28ee9c88-f1ed-8094-a175-f6d651dc00ef" class="numbered-list" start="2"><li>All information should be self-explanatory: weather should use universally understood symbols (sun icon, rain drops, temperature degrees), tasks should appear as readable text with clear time indicators. No codes or abbreviations should require memorization.</li></ol><ol type="a" id="28ee9c88-f1ed-80df-bb14-c594bfcf535f" class="numbered-list" start="3"><li>We will observe first-time users interpreting the display without instruction measuring whether they correctly identify all six information types within 10 seconds, track conduction about any symbols or indicators, and test comprehension across diverse age groups and technical backgrounds to ensure accessibility.</li></ol><ol type="a" id="28ee9c88-f1ed-805e-81fd-cb1620b35b1e" class="numbered-list" start="4"><li><em>Rationale: Our mirror is used during rushed, half-awake forming routines when cognitive resources are limited. If users must think about what they’re seeing, they’re not glancing, but reading and processing, which breaks the calm technology model. This connects to Nielsen’s usability heuristic of “Recognition Rather Than Recall”.</em></li></ol></li></ol><ol type="1" id="28ee9c88-f1ed-803c-ba7e-f444fac81567" class="numbered-list" start="3"><li>User Trust<ol type="a" id="28ee9c88-f1ed-8071-aa95-ffd66c8f409c" class="numbered-list" start="1"><li>Users must be able to understand whether displayed information is current- specifically when weather data and TODO/calendar items were last updated- within 5 seconds of viewing the display.</li></ol><ol type="a" id="28ee9c88-f1ed-80e9-aa7c-f3a0dd8bf52a" class="numbered-list" start="2"><li>The system should provide subtle, non-intrusive indicators showing sync freshness.</li></ol><ol type="a" id="28ee9c88-f1ed-80b1-bd8b-d41f7dee8779" class="numbered-list" start="3"><li>We will measure how quickly users can determine if weather and tasks are current, track how often they question data accuracy, and test whether the update indicator is visible yet unobtrusive.</li></ol><ol type="a" id="28ee9c88-f1ed-808b-9d21-e8f85faf542a" class="numbered-list" start="4"><li><em>Rationale: If users can’t trust that the information they are seeing is fresh, then they wouldn&#x27;t trust relying on the device for their morning routines. This connects to Nielsen’s heuristic of “Visibility of System Status”.</em></li></ol></li></ol><ol type="1" id="28ee9c88-f1ed-801d-b2bc-e2d281ff3ba8" class="numbered-list" start="4"><li>Error Prevention:<ol type="a" id="28ee9c88-f1ed-8027-8d66-db98bff17a0f" class="numbered-list" start="1"><li>The system must prevent and gracefully handle common errors without user intervention: network connectivity losses, API failures, sync conflicts, or data corruption should not result in frozen displays, misleading information, or stale data being presented as current.</li></ol><ol type="a" id="28ee9c88-f1ed-80e7-9b01-cdad603de710" class="numbered-list" start="2"><li>We will simulate various failure modes (disconnected network during sync, corrupt weather API response, Google Calendar service timeout), measure whether the system recovers automatically without manual intervention, and track whether error indicators are noticeable yet non-alarming. <em>Users should never need to “fix” or restart the mirror.</em></li></ol><ol type="a" id="28ee9c88-f1ed-806f-b809-f2c9a558007b" class="numbered-list" start="3"><li><em>Rationale: Calm technology should be invisible when working correctly.</em></li></ol></li></ol><ol type="1" id="28ee9c88-f1ed-804d-a93e-fa5c45b814b6" class="numbered-list" start="5"><li>Use the Mirror as a Mirror<ol type="a" id="28ee9c88-f1ed-8063-97d6-f8de1319e670" class="numbered-list" start="1"><li>Users can successfully use the device as a functional mirror while information is displayed (the primary function shouldn&#x27;t be compromised). Visual information should be understandable without overpowering the mirror&#x27;s reflection, and users should be able to comfortably use it for grooming, outfit checks, and other typical mirror activities. The mirror should be easily integrated into their lives through an appropriate physical form—having a stand or wall mount option and being adequately sized for typical bathroom/bedroom placement.</li></ol><ol type="a" id="28ee9c88-f1ed-8034-9b34-d94d409c915b" class="numbered-list" start="2"><li>We will test this by observing users performing standard mirror tasks (checking appearance, adjusting clothing, simulating grooming activities like checking teeth/hair) while information is actively displayed. We will measure if they naturally use it for both purposes at the same time, or favor one function over the other. We will gather feedback on display brightness and reflection clarity across different lightning conditions (ie: bright morning, dim evening). We will also gather feedback on the size of the mirror, and asses if the user would be willing to integrate the mirror into their furniture.</li></ol><ol type="a" id="28ee9c88-f1ed-80b6-bdb8-dfe77f366299" class="numbered-list" start="3"><li><em>Rationale: A mirror that can&#x27;t properly show your reflection becomes a screen with a poor viewing angle. Further, if the physical form factor doesn&#x27;t fit naturally into existing spaces (i.e- too large for a bathroom counter, too heavy to mount safely, lacking appropriate stands) it becomes an intrusive piece of technology demanding accommodation instead of ambiently enhancing the surroundings. The mirror must earn its place in users&#x27; homes by being an excellent mirror first, with information display as a secondary feature. This connects to Nielsen’s heuristics of “Aesthetic and Minimal Design” and “User Control and Freedom”.</em></li></ol></li></ol><ol type="1" id="28ee9c88-f1ed-80dd-b890-cb960d625715" class="numbered-list" start="6"><li>Personalization <ol type="a" id="28ee9c88-f1ed-80b4-aceb-c91694fbf23e" class="numbered-list" start="1"><li>Users must be able to customize essential display preferences (location, time/date/temperature formats, calendar source, widget arrangement) through a simple remote-controlled interface that requires no external devices after initial setup. The setup process should be completable within 5 minutes for first-time users, with settings changes taking less than 1 minute.</li></ol><ol type="a" id="28ee9c88-f1ed-8026-8af3-e73095cbf055" class="numbered-list" start="2"><li>The customization interface should only appear when explicitly invoked (long-press on remote), keeping the primary mirror display clean and uncluttered during normal use. All preferences must persist across power cycles without requiring reconfiguration.</li></ol><ol type="a" id="28ee9c88-f1ed-80c4-9748-f5e74cd6c288" class="numbered-list" start="3"><li>We will measure time-to-completion for initial setup and subsequent preference changes, track error rates during navigation, observe whether users can locate and modify settings without instruction, and gather feedback on whether the customization options meet their needs without overwhelming them with unnecessary choices.</li></ol><ol type="a" id="28ee9c88-f1ed-8059-8403-d12fbc8e8946" class="numbered-list" start="4"><li><em>Rationale: Calm technology must adapt to individual contexts—a mirror showing Fahrenheit to a Celsius user or wrong timezone information demands attention rather than providing it peripherally. However, excessive customization options contradict minimalism. We balance these by offering only essential personalization that directly impacts information utility, accessed through a hidden-until-needed interface. This connects to Nielsen&#x27;s heuristics of &quot;User Control and Freedom&quot; and &quot;Flexibility and Efficiency of Use”</em></li></ol></li></ol><p id="28ee9c88-f1ed-80ef-b383-d0ccd07740ae" class="">
+</p><h3 id="28ee9c88-f1ed-80f4-8f64-f0e43380df74" class="">Benchmark Tasks</h3><p id="28ee9c88-f1ed-8027-8cf6-ff85e15d2b5a" class="">Now that we’ve defined our primary usability goals, we will develop benchmark tasks that test whether the mirror meets these objectives. Users will receive task descriptions that outline what to achieve while not giving them instructions of how to accomplish the tasks. This will let us assess whether our design is intuitive and naturally learnable.<br/></p><p id="28ee9c88-f1ed-809b-a149-e20e6ca7e1ef" class=""><strong>Task 1: View Today’s Priorities</strong></p><p id="28ee9c88-f1ed-8064-8998-ed49747d3c80" class="">The user must identify their critical tasks for the day while performing their normal mirror routine. </p><p id="28ee9c88-f1ed-809e-8ed8-d84da19198c6" class="">
+</p><p id="28ee9c88-f1ed-80dc-9415-cbbdd737ef25" class=""><em>Subtasks:</em></p><ul id="28ee9c88-f1ed-80a6-833a-e39a5cd02e74" class="bulleted-list"><li style="list-style-type:disc">START</li></ul><ul id="28ee9c88-f1ed-80f5-88c3-cfa86bd61833" class="bulleted-list"><li style="list-style-type:disc">Approach the mirror during simulated morning routine (checking appearance, adjusting hair, etc)</li></ul><ul id="28ee9c88-f1ed-805d-a43a-e630dfd74941" class="bulleted-list"><li style="list-style-type:disc">Glance at display to identify top priority tasks/events</li></ul><ul id="28ee9c88-f1ed-80fe-ad1e-fb504ba31333" class="bulleted-list"><li style="list-style-type:disc">Continue their routine without stopping</li></ul><ul id="28ee9c88-f1ed-80b7-b6c7-c1adcc24c6d2" class="bulleted-list"><li style="list-style-type:disc">After 20 seconds, recall the identified priorities when asked.</li></ul><ul id="28ee9c88-f1ed-804c-8971-caf0933748fb" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-80db-943f-ece3a6670134" class="">
+</p><p id="28ee9c88-f1ed-80c9-94cb-e3c71cb90dde" class="">Testing Metrics</p><ol type="1" id="28ee9c88-f1ed-8015-a440-f44f3ca2f220" class="numbered-list" start="1"><li>Could the user identify where the priorities are located within 5 seconds of viewing the mirror?</li></ol><ol type="1" id="28ee9c88-f1ed-8030-9c08-db9ea25a618f" class="numbered-list" start="2"><li>Did the user need to stop their routine to read the display or could they absorb information while multitasking?</li></ol><ol type="1" id="28ee9c88-f1ed-805d-9c66-dd996b6e3809" class="numbered-list" start="3"><li>How accurate was their recall of task/event details (descriptions and times)?</li></ol><ol type="1" id="28ee9c88-f1ed-8079-abee-fc0b439fde33" class="numbered-list" start="4"><li>Which information did they notice first? (testing visual hierarchy)</li></ol><ol type="1" id="28ee9c88-f1ed-80c8-a64d-f0a0ca0c60c2" class="numbered-list" start="5"><li>Did the user describe their experience as “glancing” or “reading carefully”?</li></ol><p id="28ee9c88-f1ed-8093-ba62-d2bf93027822" class="">
+</p><p id="28ee9c88-f1ed-80a5-967d-c5a1f8b0a486" class=""><em>Usability Goals Tested: 1, 2, 3</em></p><p id="28ee9c88-f1ed-8035-9bc9-de2631f64bf5" class="">This task tests aesthetic and minimalist design (ensuring information is scannable), familiarity (recognizing tasks as being tasks instantly), and user trust (confidence in the information being current enough to act on).</p><p id="28ee9c88-f1ed-8006-ba0c-cffcb7f28143" class="">
+</p><p id="28ee9c88-f1ed-80b0-bb6a-c973f83a00e7" class=""><strong>Task </strong><em><strong>2: Check the Current Time</strong></em></p><p id="28ee9c88-f1ed-8057-a918-dbeec7ce3326" class="">The user must determine the current time to assess if they are running late for their next commitment. </p><p id="28ee9c88-f1ed-8094-824c-cdf4885424ef" class="">
+</p><p id="28ee9c88-f1ed-809b-be3b-eac80d9d7c5d" class=""><em>Subtasks:</em></p><ul id="28ee9c88-f1ed-80c5-86c1-d504b2c1303d" class="bulleted-list"><li style="list-style-type:disc">START</li></ul><ul id="28ee9c88-f1ed-804f-9c9b-d4c53064a042" class="bulleted-list"><li style="list-style-type:disc">Glance at mirror during morning routine</li></ul><ul id="28ee9c88-f1ed-80bb-9ffd-f716710d2241" class="bulleted-list"><li style="list-style-type:disc">Identify the current time</li></ul><ul id="28ee9c88-f1ed-808f-9360-f25b82282b5b" class="bulleted-list"><li style="list-style-type:disc">Locate their next calendar event and its scheduled time</li></ul><ul id="28ee9c88-f1ed-8043-b9ed-d849155e4809" class="bulleted-list"><li style="list-style-type:disc">Determine if they need to hurry up or have adequate time.</li></ul><ul id="28ee9c88-f1ed-80b7-9e0f-d68ff9627b0b" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-8043-9f13-d5a7ae800805" class="">
+</p><p id="28ee9c88-f1ed-800e-9d24-e367656ffda7" class="">Testing Metrics</p><ol type="1" id="28ee9c88-f1ed-80c3-8db7-d19bc30af0cd" class="numbered-list" start="1"><li>Could the user locate the time display within 2 seconds?</li></ol><ol type="1" id="28ee9c88-f1ed-8085-8eab-d48f2708f6e5" class="numbered-list" start="2"><li>Was the time format (12/24-hour) immediately understandable?</li></ol><ol type="1" id="28ee9c88-f1ed-8010-931e-eae04ca604cb" class="numbered-list" start="3"><li>Could the user identify the next time specific event without scanning through all of the scheduled tasks?</li></ol><ol type="1" id="28ee9c88-f1ed-8012-82b3-ec110ea10668" class="numbered-list" start="4"><li>How long did the entire decision-making process take (target: under 5 seconds)?</li></ol><ol type="1" id="28ee9c88-f1ed-8007-b5b8-e416a3e9a311" class="numbered-list" start="5"><li>Would the user trust this information enough to act on it without checking their phone?</li></ol><p id="28ee9c88-f1ed-806b-9305-da1541ca2959" class="">
+</p><p id="28ee9c88-f1ed-8057-9580-c7b2116913f2" class=""><em>Usability Goals Tested: 1, 2, 3</em></p><p id="28ee9c88-f1ed-8029-838b-c886ee23165a" class=""><em>This task tests aesthetic and minimalist design, familiarity, and user trust.</em></p><p id="28ee9c88-f1ed-8060-8f65-ffd6604fd967" class="">
+</p><p id="28ee9c88-f1ed-802d-b5f0-e7f502060c26" class=""><strong>Task 3</strong><em><strong>: View the Weather</strong></em></p><p id="28ee9c88-f1ed-801f-a119-c1c8e271452c" class=""><em>The user must determine today&#x27;s weather conditions including temperature range and likelihood of rain to make appropriate clothing and preparation decisions.</em></p><p id="28ee9c88-f1ed-80c8-8c8f-dc8ad19d6a54" class="">
+</p><p id="28ee9c88-f1ed-80d7-bb74-c973272dd7b5" class=""><em>Subtasks:</em></p><ul id="28ee9c88-f1ed-805c-aa84-c7eb52574f57" class="bulleted-list"><li style="list-style-type:disc">START</li></ul><ul id="28ee9c88-f1ed-80c8-bd62-cee536ecd2a6" class="bulleted-list"><li style="list-style-type:disc">Glance at the mirror when preparing for the day</li></ul><ul id="28ee9c88-f1ed-805f-adfc-c80799826ff5" class="bulleted-list"><li style="list-style-type:disc">Identify the current weather</li></ul><ul id="28ee9c88-f1ed-80ac-8d18-d32d14b585df" class="bulleted-list"><li style="list-style-type:disc">Identify the high and low temperatures</li></ul><ul id="28ee9c88-f1ed-80fe-88cf-e8c8524543b5" class="bulleted-list"><li style="list-style-type:disc">Identify the change of rain/ snow percentage</li></ul><ul id="28ee9c88-f1ed-8062-bd49-e2b7319988a5" class="bulleted-list"><li style="list-style-type:disc">Make a decision about bringing an umbrella</li></ul><ul id="28ee9c88-f1ed-8066-aaff-f6358f47be38" class="bulleted-list"><li style="list-style-type:disc">Make a decision about appropriate clothing</li></ul><ul id="28ee9c88-f1ed-8007-a0d2-d287aafb955d" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-8074-9182-c76fcc174f3f" class="">
+</p><p id="28ee9c88-f1ed-801a-8152-fe59e8a664a0" class="">Testing Metrics</p><ol type="1" id="28ee9c88-f1ed-805c-9a14-f2b92c16c4c0" class="numbered-list" start="1"><li>Could the user locate all three weather components within 5 seconds?</li></ol><ol type="1" id="28ee9c88-f1ed-8061-a136-ef97ca49a107" class="numbered-list" start="2"><li>Were the weather icons and symbols immediately understandable without explanation?</li></ol><ol type="1" id="28ee9c88-f1ed-803f-8a96-e3156b62238a" class="numbered-list" start="3"><li>Could the user translate rain/snow percentage into an actionable decision (bringing umbrella or not)?</li></ol><ol type="1" id="28ee9c88-f1ed-8014-a0e0-da7e6b86591c" class="numbered-list" start="4"><li>Did the weather presentation match their expectations from other apps/formats?</li></ol><ol type="1" id="28ee9c88-f1ed-8035-aeb3-c132b3acbecd" class="numbered-list" start="5"><li>Would they trust this information without verifying on their phone?</li></ol><p id="28ee9c88-f1ed-8089-995c-de0acc117dc4" class=""><em>Usability Goals Tested: 1,2,3</em></p><p id="28ee9c88-f1ed-8084-8b2e-cafbdfe31e4e" class=""><em>This task tests aesthetic and minimalist design (weather information clarity), familiarity (recognizable weather symbols and units), and user trust (confidence in forecast accuracy and freshness).</em></p><p id="28ee9c88-f1ed-80f4-ac9d-fdc3ab792b43" class="">
+</p><p id="28ee9c88-f1ed-808d-af25-e04585f3f032" class=""><strong>Task 4: Adjust to Different Lightning Conditions</strong></p><p id="28ee9c88-f1ed-8031-9e5e-e0705d5faf40" class="">The user must successfully adjust the mirror&#x27;s display brightness.</p><p id="28ee9c88-f1ed-8041-89fa-f7c97371b635" class="">Subtasks:</p><ul id="28ee9c88-f1ed-80e7-9c9d-dc46bd6a9b94" class="bulleted-list"><li style="list-style-type:disc">START</li></ul><ul id="28ee9c88-f1ed-804b-88f7-d6a2b3e32749" class="bulleted-list"><li style="list-style-type:disc">User is prompted to adjust the display brightness</li></ul><ul id="28ee9c88-f1ed-8080-980d-e4389b24e73d" class="bulleted-list"><li style="list-style-type:disc">User can locate the brightness adjustment button within 10 seconds</li></ul><ul id="28ee9c88-f1ed-803c-8715-e49c044ee641" class="bulleted-list"><li style="list-style-type:disc">User adjusts the brightness</li></ul><ul id="28ee9c88-f1ed-8022-9e4a-d894b6ba4df7" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-80cc-af4f-c061268ca6ac" class="">
+</p><p id="28ee9c88-f1ed-8028-986e-c01107e1ed5f" class="">
+</p><p id="28ee9c88-f1ed-8041-b91b-f5e943d912ad" class="">Testing Metrics:</p><ol type="1" id="28ee9c88-f1ed-8033-8335-dc8663aad516" class="numbered-list" start="1"><li>Could the user locate the brightness button without instruction?</li></ol><ol type="1" id="28ee9c88-f1ed-80a3-8eba-cd1c0e1eeaaa" class="numbered-list" start="2"><li>How long did it take to find and successfully adjust brightness the first time?</li></ol><ol type="1" id="28ee9c88-f1ed-80c0-a7d8-f2a9dec09499" class="numbered-list" start="3"><li>Was the button placement intuitive and accessible during normal mirror use?</li></ol><ol type="1" id="28ee9c88-f1ed-80fc-9e1d-e5ce80bc1d56" class="numbered-list" start="4"><li>Did they find the adjustment process disruptive or seamless?</li></ol><ol type="1" id="28ee9c88-f1ed-8044-bda1-c93ae8480e9b" class="numbered-list" start="5"><li>Would they remember how to adjust brightness after the initial discovery?</li></ol><p id="28ee9c88-f1ed-80ee-b4eb-d0e13596379c" class=""><em>Usability Goals Tested: 2,4,5</em></p><p id="28ee9c88-f1ed-8027-9606-f1d11492deec" class=""><em>This task tests familiarity (intuitive button location and function), error prevention (easy adjustment prevents eye strain issues), and using the mirror as a mirror (brightness control doesn&#x27;t interfere with primary mirror function, and gives the user freedom to adjust the brightness so that it can integrate with their environment).</em></p><p id="28ee9c88-f1ed-8033-9215-c728d57cb5cc" class="">
+</p><p id="28ee9c88-f1ed-8009-b00f-d5eb228be709" class=""><strong>Task 5: Use the Mirror as a Mirror</strong></p><p id="28ee9c88-f1ed-80e2-a079-fd5c1b775e86" class=""><em>The user must successfully use the device for typical mirror functions while information is actively displayed, without the information disrupting the user’s mirror routine.</em></p><p id="28ee9c88-f1ed-80d0-953c-cd7becd50f54" class="">Subtasks:</p><ul id="28ee9c88-f1ed-8060-b45f-ceb991689884" class="bulleted-list"><li style="list-style-type:disc">START</li></ul><ul id="28ee9c88-f1ed-8028-9ba3-d9e38e2400dc" class="bulleted-list"><li style="list-style-type:disc">Approach mirror with information displayed</li></ul><ul id="28ee9c88-f1ed-8077-a9f8-d8a387f21c23" class="bulleted-list"><li style="list-style-type:disc">Check appearance and adjust clothing/hair</li></ul><ul id="28ee9c88-f1ed-803b-9bfc-c8fea607a430" class="bulleted-list"><li style="list-style-type:disc">Simulate grooming tasks (checking teeth, fixing hair)</li></ul><ul id="28ee9c88-f1ed-80ed-b8af-c15ca6330679" class="bulleted-list"><li style="list-style-type:disc">Attempt to read displayed information while simultaneously checking reflection</li></ul><ul id="28ee9c88-f1ed-8026-bea5-fcd13a8f3247" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-8092-b358-d38f3a88cf20" class=""><em>Testing Metrics:</em></p><ol type="1" id="28ee9c88-f1ed-8074-ab5a-d7144763ef7f" class="numbered-list" start="1"><li><em>Could the user see their reflection clearly with the display active?</em></li></ol><ol type="1" id="28ee9c88-f1ed-802b-9b5c-c7fc13002f71" class="numbered-list" start="2"><li><em>Did they rate the visual balance between information and reflection as satisfactory?</em></li></ol><ol type="1" id="28ee9c88-f1ed-806d-b110-d56525967440" class="numbered-list" start="3"><li><em>Could they comfortably perform typical mirror activities without turning off the display?</em></li></ol><ol type="1" id="28ee9c88-f1ed-80e0-96fb-d51e1b8e198b" class="numbered-list" start="4"><li><em>Did they naturally use it for both purposes simultaneously, or favor one function?</em></li></ol><p id="28ee9c88-f1ed-8001-ac4c-c787f18a7e20" class=""><em>Usability Goal Tested: 5</em></p><p id="28ee9c88-f1ed-80b1-a6a5-d44e521b4cf0" class=""><em>This task directly tests the “use the mirror as a mirror” goal to determine that the smart features don’t compromise the device’s primary feature as being a mirror.</em></p><p id="28ee9c88-f1ed-80e1-96a3-fef2c6156f6e" class="">
+</p><p id="28ee9c88-f1ed-808e-b1c3-d50347f37d88" class=""><strong>Task 6: Integrate the Mirror into Daily Routine.</strong></p><p id="28ee9c88-f1ed-8023-9c83-d071f31ad041" class="">The user must position and mount the mirror in their actual living space using available options (hinge, stand, or frame integration) to assess its physical integration into their environment and routine.</p><p id="28ee9c88-f1ed-8070-b02f-e69a3af95cd6" class="">Subtasks</p><ul id="28ee9c88-f1ed-80c1-a255-c6bee77e4f20" class="bulleted-list"><li style="list-style-type:disc">START </li></ul><ul id="28ee9c88-f1ed-80b4-8eb0-df5206f787ed" class="bulleted-list"><li style="list-style-type:disc">Receive mirror</li></ul><ul id="28ee9c88-f1ed-802e-870b-fa3c08ff6deb" class="bulleted-list"><li style="list-style-type:disc">Choose preferred mounting method based on their space</li></ul><ul id="28ee9c88-f1ed-801e-abf8-d84ee24e6d12" class="bulleted-list"><li style="list-style-type:disc">Position mirror in their bathroom or bedroom</li></ul><ul id="28ee9c88-f1ed-80f6-95e4-ebda3e4eaf97" class="bulleted-list"><li style="list-style-type:disc">Assess whether size, placement, and mounting work with their space</li></ul><ul id="28ee9c88-f1ed-80e1-afb5-c98ca05545e8" class="bulleted-list"><li style="list-style-type:disc">Report on aesthetic fit and functional integration</li></ul><ul id="28ee9c88-f1ed-8009-a982-e1eb2a591b02" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-8024-b0c2-fdbda06bd3f9" class="">Testing Metrics:</p><ol type="1" id="28ee9c88-f1ed-80e2-bddf-c08a2a0b2bdf" class="numbered-list" start="1"><li>Could the user successfully position the mirror?</li></ol><ol type="1" id="28ee9c88-f1ed-80ca-bd91-c19a25d715f4" class="numbered-list" start="2"><li>Did the mirror size fit appropriately in their chosen space?</li></ol><ol type="1" id="28ee9c88-f1ed-8092-92ee-eddbf07ec2c8" class="numbered-list" start="3"><li>Did the mirror&#x27;s aesthetic design complement or clash with their existing décor?</li></ol><ol type="1" id="28ee9c88-f1ed-80d9-a396-f25a4a762c85" class="numbered-list" start="4"><li>Did the mirror feel intrusive?</li></ol><p id="28ee9c88-f1ed-80eb-b41e-d3e6952b97fd" class=""><em>Usability Goals Tested: 1,5</em></p><p id="28ee9c88-f1ed-8027-865d-e175181487b7" class=""><em>This task tests if the mirror&#x27;s aesthetic can integrate into their home. It also tests if the mirror can still be used as a mirror, giving its sizing and the information being displayed. Further, it assesses if the mirror’s adaptability features (like stand or hinge) are appropriate.</em></p><p id="28ee9c88-f1ed-80ba-8f8c-d0ed3402b52d" class="">
+</p><p id="28ee9c88-f1ed-803e-a37d-e9fe42c91b2f" class=""><strong>Task 7: Customize Mirror Settings</strong></p><p id="28ee9c88-f1ed-80d4-8f91-ccf7a0743dad" class="">The user must personalize the mirror to match their preferences and location without external instruction, using only the provided remote control.</p><p id="28ee9c88-f1ed-804f-925f-d8784ef4222a" class="">Subtasks</p><ul id="28ee9c88-f1ed-8027-b957-d11e9aecc6e4" class="bulleted-list"><li style="list-style-type:disc">START </li></ul><ul id="28ee9c88-f1ed-805e-83ba-c7f47cd8f87d" class="bulleted-list"><li style="list-style-type:disc">User is told their mirror is displaying weather for the wrong city and in the wrong temperature unit</li></ul><ul id="28ee9c88-f1ed-804a-ae08-d1e306bc2e21" class="bulleted-list"><li style="list-style-type:disc">User must access the settings menu using the remote</li></ul><ul id="28ee9c88-f1ed-8001-96af-e168d05b51d0" class="bulleted-list"><li style="list-style-type:disc">User changes their location to their actual city</li></ul><ul id="28ee9c88-f1ed-8025-abf0-e30c742076a6" class="bulleted-list"><li style="list-style-type:disc">User switches temperature unit from Celsius to Fahrenheit (or vice versa)</li></ul><ul id="28ee9c88-f1ed-809a-82b1-f0d699881642" class="bulleted-list"><li style="list-style-type:disc">User changes time format from 24-hour to 12-hour (or vice versa)</li></ul><ul id="28ee9c88-f1ed-8066-bcbd-c518ace61afe" class="bulleted-list"><li style="list-style-type:disc">User exits settings and verifies changes are reflected on main display</li></ul><ul id="28ee9c88-f1ed-8083-8d5d-ca92d60bf3ad" class="bulleted-list"><li style="list-style-type:disc">STOP</li></ul><p id="28ee9c88-f1ed-8026-bb5c-e607c8d6520f" class="">Testing Metrics:</p><ol type="1" id="28ee9c88-f1ed-804f-8abb-db1dfcb5f1f8" class="numbered-list" start="1"><li>Could the user locate and access the settings menu without instruction within 30 seconds?</li></ol><ul id="28ee9c88-f1ed-8009-a1f2-cc6f09a0d170" class="bulleted-list"><li style="list-style-type:disc">How long did the complete customization process take (target: under 2 minutes)?</li></ul><ul id="28ee9c88-f1ed-8079-806f-cbc675600b52" class="bulleted-list"><li style="list-style-type:disc">Could the user navigate the settings menu using only remote directional controls?</li></ul><ul id="28ee9c88-f1ed-80c8-88e2-e20499c20ca0" class="bulleted-list"><li style="list-style-type:disc">Were setting categories clearly labeled and logically organized?</li></ul><ul id="28ee9c88-f1ed-809e-8df8-de576c508b91" class="bulleted-list"><li style="list-style-type:disc">Could the user successfully return to the main display without confusion?</li></ul><ul id="28ee9c88-f1ed-804a-a6d9-e32196ee0baa" class="bulleted-list"><li style="list-style-type:disc">Did the user express frustration during the process or find it straightforward?</li></ul><p id="28ee9c88-f1ed-80b1-8437-f515bf818159" class=""><em>Usability Goals Tested: 2,6</em></p><p id="28ee9c88-f1ed-8065-88af-f44be1c929bb" class="">This task directly tests personalization (user control over essential preferences) and familiarity (intuitive navigation and settings structure). </p><p id="28ee9c88-f1ed-8007-8b35-e0e0ce77b701" class="">
+</p><p id="28ee9c88-f1ed-803c-ac81-c64d8f50a8e2" class="">
+</p><h1 id="28ee9c88-f1ed-8049-b6db-d56b16cb3c89" class=""><mark class="highlight-red_background">Test Materials</mark></h1><h2 id="28ee9c88-f1ed-80da-bf97-c6696e52b4d0" class=""><strong>Observer Briefing</strong></h2><ul id="28ee9c88-f1ed-806e-9459-ff430458cace" class="bulleted-list"><li style="list-style-type:disc">The observer should take note of these roles:<ul id="28ee9c88-f1ed-80ac-92cd-da38ec7c9e65" class="bulleted-list"><li style="list-style-type:circle"><strong>Facilitator:</strong> Guides the participant, reads scripts and asks the questions on the moderator guide.</li></ul><ul id="28ee9c88-f1ed-8026-a72d-cb4d01432fc9" class="bulleted-list"><li style="list-style-type:circle"><strong>Note-taker: Documents observations, timing, user comments and issues.</strong></li></ul><ul id="28ee9c88-f1ed-8033-ac1f-d95361b0f537" class="bulleted-list"><li style="list-style-type:circle"><strong>Optional/Available Third Observer: Takes photos/videos (with consent given by user)</strong></li></ul></li></ul><ul id="28ee9c88-f1ed-80a7-93dd-d4a51f3d6e76" class="bulleted-list"><li style="list-style-type:disc">As an observer, note that you will mainly observe the user’s interactions without influencing their decisions nor giving guidance unless absolutely necessary. The users will be testing both prototypes back to back, with the exception that one user will test prototype #2 and then #1. Focus on these main things:<ul id="28ee9c88-f1ed-8072-b833-ed3120c12e95" class="bulleted-list"><li style="list-style-type:circle">How the user navigates the mirror interface and completes tasks without prior instruction.</li></ul><ul id="28ee9c88-f1ed-80c1-ab97-f4f6681178f1" class="bulleted-list"><li style="list-style-type:circle">How easily they can interpret the feedback given back by the mirror.</li></ul><ul id="28ee9c88-f1ed-80a2-807f-f0a3451327c3" class="bulleted-list"><li style="list-style-type:circle">How they navigate through moments of confusion, hesitation, or frustration and their reactions towards them.</li></ul></li></ul><h2 id="28ee9c88-f1ed-8044-9a98-f15eb006a7d0" class="">User Introduction</h2><p id="28ee9c88-f1ed-80c9-9a33-da877b03c111" class=""><strong>Welcome &amp; Introduction for both Prototypes:</strong><div class="indented"><blockquote id="28ee9c88-f1ed-80f2-8c91-ce0fe964dc54" class="">Hello! Thank you for participating in our usability test today. My name is [Your name]. We are students at McGill University doing a class project about calm technology. Today, we&#x27;re testing a prototype of a smart mirror designed for everyday use. Our goal is to help people have a more informed yet calm morning routine.<br/>We will be testing the usability of this prototype by asking you to interact with our mirror prototype by doing some tasks. We’ll be guiding you through this session. This should take approximately 30 minutes. Before starting we would like to you to go through some forms and sign this consent form. Also here are some information to keep in mind:<p id="28ee9c88-f1ed-80ef-a061-ebb07e9b55b7" class="">We are testing the design, not you. There are no wrong answers or actions.</p><p id="28ee9c88-f1ed-8092-b707-c028a70f5d4b" class="">Please think aloud as you interact with the prototype. Tell us what you’re looking at, thinking or trying to do.</p><p id="28ee9c88-f1ed-8045-a05f-cb2d617fd63b" class="">If something is confusing, that’s valuable feedback for us.</p><p id="28ee9c88-f1ed-8052-9bad-eebe97c1eb38" class="">You can stop at any time for any reason.</p><p id="28ee9c88-f1ed-80af-bb93-e05773831e05" class="">Do you have any questions before we begin?</p></blockquote></div></p><h2 id="28ee9c88-f1ed-80a1-a098-e5c570e04bcf" class="">Pre-Test Questionnaire</h2><p id="28ee9c88-f1ed-803e-8463-edc3addcd7e9" class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSemr96gpp3dCjdRHDUnDaT517nNyYF5v0zEiDbMTZ8wDAnt3g/viewform?usp=dialog">https://docs.google.com/forms/d/e/1FAIpQLSemr96gpp3dCjdRHDUnDaT517nNyYF5v0zEiDbMTZ8wDAnt3g/viewform?usp=dialog</a></p><h2 id="28ee9c88-f1ed-80d3-8337-c10ea03d290c" class="">User/Training Documentation</h2><p id="28ee9c88-f1ed-803c-8aea-e13fa636bcd2" class="">This document will give the user a brief introduction to our prototype’s interface. It will explain the functionality and features of the mirror.</p><p id="28ee9c88-f1ed-8035-a97d-d9224c9ebf04" class=""><strong>Prototype 1</strong></p><ul id="28ee9c88-f1ed-80e6-98be-f385256f5ec8" class="bulleted-list"><li style="list-style-type:disc">Mirror functionality</li></ul><ul id="28ee9c88-f1ed-8093-a6b6-d4de2ee19be1" class="bulleted-list"><li style="list-style-type:disc">Displays weather, time and calendar/todo list</li></ul><ul id="28ee9c88-f1ed-801c-b1ef-fbfd27c939a1" class="bulleted-list"><li style="list-style-type:disc">Includes stand and hinge to mount the mirror.</li></ul><ul id="28ee9c88-f1ed-800c-bdd7-f4bbd3352f46" class="bulleted-list"><li style="list-style-type:disc">Always on when plugged in.</li></ul><p id="28ee9c88-f1ed-80fc-8529-d6ac128eff35" class="">
+</p><p id="28ee9c88-f1ed-80b1-8840-fb150680f3f4" class=""><strong>Prototype 2</strong></p><ul id="28ee9c88-f1ed-801d-9311-dc43d22d296e" class="bulleted-list"><li style="list-style-type:disc">Mirror functionality</li></ul><ul id="28ee9c88-f1ed-8016-8a59-d5d544156bb2" class="bulleted-list"><li style="list-style-type:disc">Displaying weather and time</li></ul><ul id="28ee9c88-f1ed-8069-be32-e952300417a2" class="bulleted-list"><li style="list-style-type:disc">Removable stand </li></ul><ul id="28ee9c88-f1ed-80ff-a32b-fc2b34a27655" class="bulleted-list"><li style="list-style-type:disc">Power button on the back in order to start the system.</li></ul><ul id="28ee9c88-f1ed-801c-88a6-c08725d5a3ce" class="bulleted-list"><li style="list-style-type:disc">Contains a light display around the mirror</li></ul><p id="28ee9c88-f1ed-80fe-b703-c7576830a5ea" class="">
+</p><h2 id="28ee9c88-f1ed-8005-bbb6-f162c2f390ae" class="">Description of Test Tasks</h2><p id="28ee9c88-f1ed-800b-a12e-e4593f83c469" class=""><mark class="highlight-purple_background"><strong>Task 1:  Complete Initial Setup Process</strong></mark></p><p id="28ee9c88-f1ed-8054-a349-cfed6873df6a" class=""><strong>Objective:</strong> Test if first-time users can complete the entire setup process (remote pairing, WiFi connection, calendar sync, location selection, date/temperature format preferences) within 5 minutes without external assistance, and assess if each step is self-explanatory and provides adequate feedback.</p><p id="28ee9c88-f1ed-8046-9d3e-c3c9e3c94bd7" class=""><strong>Instructions: </strong>Set up the mirror.</p><p id="28ee9c88-f1ed-80e5-b016-dbc603f7d098" class="">Observers will time the process and note any confusion, errors, or requests for clarification.</p><p id="28ee9c88-f1ed-8011-a519-e2cb2697c709" class="">
+</p><p id="28ee9c88-f1ed-8041-96a8-c4d33002bdee" class=""><mark class="highlight-purple_background"><strong>Task 2: View Today’s priorities </strong></mark></p><p id="28ee9c88-f1ed-80de-b13a-e799ba861819" class=""><strong>Objective:</strong> Assess if users can quickly locate the to-do list, absorb the information while multitasking, and recall priorities after a brief viewing period. </p><p id="28ee9c88-f1ed-80c3-8c4e-d7e725d6871e" class=""><strong>Instructions:</strong> Approach the mirror as if getting ready in the morning. Point to where today&#x27;s priorities are displayed while checking your appearance. After 20 seconds of occasional glancing, recall the tasks or events you saw without looking at the mirror.</p><p id="28ee9c88-f1ed-805e-8464-f6919ca6f7ea" class="">
+</p><p id="28ee9c88-f1ed-8050-995c-ecd3d773861b" class=""><mark class="highlight-purple_background"><strong>Task 3: Check the current time</strong></mark></p><p id="28ee9c88-f1ed-8033-99d4-f9f791871c3b" class=""><strong>Objective:</strong> Evaluate whether users can quickly locate the time and date display and understand the format immediately.</p><p id="28ee9c88-f1ed-8027-94c7-f65cb086784b" class=""><strong>Instructions:</strong> Point to where the date and time are displayed. </p><p id="28ee9c88-f1ed-803b-ba78-fe28703dd9d6" class="">
+</p><p id="28ee9c88-f1ed-8046-bb1f-dd2267ef0d3d" class=""><mark class="highlight-purple_background"><strong>Task 4: View the weather</strong></mark></p><p id="28ee9c88-f1ed-803f-8347-f27ffb75d25f" class=""><strong>Objective:</strong> Test whether weather information (high/low temperatures and precipitation chance) is clearly displayed using recognizable symbols. This test also determines if the whether displayed  can be quickly translated into actionable decisions about clothing.</p><p id="28ee9c88-f1ed-807c-b7c3-fd0c24401510" class=""><strong>Instructions:</strong>  Find and identify the high temperature, low temperature, and chance of rain or snow. Based on this information, decide whether to bring an umbrella and what clothing to wear.</p><p id="28ee9c88-f1ed-80af-b15e-da1e5afb35e9" class="">
+</p><p id="28ee9c88-f1ed-80a2-8e98-e54b3f5f141b" class=""><mark class="highlight-purple_background"><strong>Task 5: Adjust to Different Lighting Conditions</strong></mark></p><p id="28ee9c88-f1ed-801b-91bd-dd7247ea0b93" class=""><strong>Objective:</strong> Determine if the users can locate and use the brightness adjustment control without instruction or assistance, and assess whether this control is intuitive and non-disruptive to normal mirror use.</p><p id="28ee9c88-f1ed-8065-b77f-e94280220a37" class=""><strong>Instructions:</strong> Without guidance, locate the brightness control and adjust the display brighter, then dimmer. Ask the user to explain how they feel about the button placements.</p><p id="28ee9c88-f1ed-807c-8022-d9acb87fe6cf" class="">
+</p><p id="28ee9c88-f1ed-806c-a0d1-e87d3ad37dad" class=""><mark class="highlight-purple_background"><strong>Task 6: Use the Mirror as a Mirror </strong></mark></p><p id="28ee9c88-f1ed-80af-a411-ef472ccc810a" class=""><strong>Objective:</strong> Tests if the digital display compromises the mirror&#x27;s primary reflection function. </p><p id="28ee9c88-f1ed-804d-93a3-d7314bd1c137" class=""><strong>Instructions:</strong> Use the mirror for normal morning activities like checking your appearance and grooming while the display is active. Attempt to read displayed information in the same time. </p><p id="28ee9c88-f1ed-809e-bc40-f41f25145645" class="">
+</p><p id="28ee9c88-f1ed-800f-86b4-cc7dd84d47fe" class=""><mark class="highlight-purple_background"><strong>Task 7: Integrate the Mirror into Daily Routine</strong></mark></p><p id="28ee9c88-f1ed-8036-8047-d2ad9ae026cc" class=""><strong>Objective:</strong> Test whether users understand the physical mounting options (hinge, stand, wall-mount) and find out if the mirror&#x27;s size, aesthetics, and setup flexibility would integrate naturally into their bathroom or bedroom environment.</p><p id="28ee9c88-f1ed-80fc-8222-d2f178e718e9" class=""><strong>Instructions:</strong> </p><ul id="28ee9c88-f1ed-801d-a147-e3eaf0ac6f9c" class="bulleted-list"><li style="list-style-type:disc">Prototype 1, Identify the part of the mirror where you can mount it onto a wall. Also demonstrate how the hinge can convert to a stand so that the mirror can be placed on a surface.</li></ul><ul id="28ee9c88-f1ed-804c-bc29-f97a1f784942" class="bulleted-list"><li style="list-style-type:disc">Prototype 2, Identify the part of the mirror that uses the stand and recognize that it is removable</li></ul><p id="28ee9c88-f1ed-80d6-a2e0-d929f2139710" class="">Evaluate if the mounting options are intuitive, the size is appropriate for typical spaces, and whether the user would be willing to integrate the mirror into their home.</p><p id="28ee9c88-f1ed-807c-9c84-c6dd477611d3" class=""><mark class="highlight-purple_background"><strong>Task 8: Access and Navigate Settings Menu</strong></mark></p><p id="28ee9c88-f1ed-809e-a980-d8502fe38a70" class=""><strong>Objective:</strong> Evaluate whether users can discover and access the settings menu without instruction, and assess if the entry method (visible gear icon vs. hidden long-press) is intuitive and memorable.</p><p id="28ee9c88-f1ed-80d0-bfc2-f6d2e8b49d9e" class=""><strong>Instructions:</strong> </p><ul id="28ee9c88-f1ed-8017-8e04-ca0f61b560f7" class="bulleted-list"><li style="list-style-type:disc">Without guidance, access the settings menu using the remote control</li></ul><ul id="28ee9c88-f1ed-8008-8fdd-c4f019131451" class="bulleted-list"><li style="list-style-type:disc">Navigate to the temperature unit setting and toggle between Celsius and Fahrenheit</li></ul><ul id="28ee9c88-f1ed-8083-b938-cc825ccb401a" class="bulleted-list"><li style="list-style-type:disc">Exit the settings menu and return to the main display</li></ul><ul id="28ee9c88-f1ed-8089-9f6c-c1160795697f" class="bulleted-list"><li style="list-style-type:disc">After completing the task, explain how you accessed settings and whether you would remember this method tomorrow</li></ul><p id="28ee9c88-f1ed-8057-849b-f7d9334d76d1" class="">Evaluate if the settings menu is better accessed via a gear icon or a appear-on-command style (by holding the enter button on the TV remote for 5 seconds)</p><p id="28ee9c88-f1ed-8022-bd48-cca9128c1a9a" class="">
+</p><h2 id="28ee9c88-f1ed-8092-942c-d331b1d34807" class="">Test Script</h2><p id="28ee9c88-f1ed-80d0-9a52-ec43b5caa64b" class="">This part of the Test materials include a script for guiding the user though the set of predefined tasks. The observer and facilitator are welcome to paraphrase from the script where needed so long as each step is adequately attempted.</p><h3 id="28ee9c88-f1ed-8098-a054-f64c16da9a99" class=""><mark class="highlight-blue_background"><strong>1. Introduction</strong></mark></h3><blockquote id="28ee9c88-f1ed-80b3-8c0f-fbb43f1ceca0" class="">Firstly, are you comfortable with us recording, taking picture and/or doing voice recording for today’s session?</blockquote><p id="28ee9c88-f1ed-803a-bd05-dac158fdc78b" class="">[Recording begins]</p><p id="28ee9c88-f1ed-8053-9106-de8c97a0f891" class=""><strong>Greeting:</strong></p><p id="28ee9c88-f1ed-80c4-aa88-d1e1a563c3c3" class=""><em>“Hello, and thank you for participating in our usability testing session. My name is [Your Name], and I’ll be conducting this session today.”</em></p><p id="28ee9c88-f1ed-8007-8556-da4e2360003f" class=""><strong>Purpose:</strong></p><p id="28ee9c88-f1ed-8068-957c-c1ac18d63b27" class=""><em>“We’re currently developing smart mirror prototypes designed to help users integrate daily information—such as the time, weather, and to-do lists—into their morning routines. The purpose of this session is to evaluate how intuitive and user-friendly the mirrors’ designs and interfaces are.”</em></p><p id="28ee9c88-f1ed-807e-9056-d8542366f8ec" class=""><strong>Consent:</strong></p><p id="28ee9c88-f1ed-80b5-bd4d-d5beceb0fc60" class=""><em>“Before we begin, please make sure you have read and signed the informed consent form. Do you have any questions before we proceed?”</em></p><hr id="28ee9c88-f1ed-80d7-9a2c-d19195d71df0"/><h3 id="28ee9c88-f1ed-80d0-a259-d1b4c5e8d185" class=""><mark class="highlight-blue_background"><strong>2. Pre-Test Questionnaire </strong></mark></h3><p id="28ee9c88-f1ed-8030-8c2d-ec6b0d1b806b" class=""><em>“Please fill out this short pre-test questionnaire. It will help us understand your daily routine habits, experience with smart devices, and expectations for a smart mirror.”</em></p><hr id="28ee9c88-f1ed-8065-8f60-cd53e269571b"/><h3 id="28ee9c88-f1ed-804f-8a01-cded844578f9" class=""><mark class="highlight-blue_background"><strong>3. Introduction to the Prototype</strong></mark></h3><p id="28ee9c88-f1ed-807f-a3c2-c8dd26db1c81" class=""><strong>Demonstration:</strong></p><p id="28ee9c88-f1ed-8035-940e-c02f5f129185" class=""><em>“Before we begin the tasks, I’ll briefly introduce the prototype you’ll be interacting with today.”</em></p><p id="28ee9c88-f1ed-80bb-b93e-ffb20f7cdcd8" class=""><em>Explain the general features depending on which prototype is being tested:</em></p><p id="28ee9c88-f1ed-80c1-b129-e4dfc7837803" class=""><em><strong>Prototype 1</strong></em></p><ul id="28ee9c88-f1ed-80d2-9e84-dfc0555cb8ca" class="bulleted-list"><li style="list-style-type:disc"><em>Functions as a mirror with a digital display.</em></li></ul><ul id="28ee9c88-f1ed-8016-809e-d3b5751097cc" class="bulleted-list"><li style="list-style-type:disc"><em>Shows the </em><em><strong>weather</strong></em><em> and </em><em><strong>time</strong></em><em>.</em></li></ul><ul id="28ee9c88-f1ed-8046-9dd9-c984ddd1b365" class="bulleted-list"><li style="list-style-type:disc"><em>Includes a </em><em><strong>removable stand</strong></em><em> for desk or countertop placement.</em></li></ul><ul id="28ee9c88-f1ed-8018-a40d-e172a1559e13" class="bulleted-list"><li style="list-style-type:disc"><em>Has a </em><em><strong>power button</strong></em><em> located at the back to start the system.</em></li></ul><ul id="28ee9c88-f1ed-80c8-9572-fc40d4b20fe3" class="bulleted-list"><li style="list-style-type:disc"><em>Contains a </em><em><strong>light display</strong></em><em> surrounding the mirror for visibility.</em></li></ul><p id="28ee9c88-f1ed-802e-a2e2-d05b1b699f8b" class=""><em><strong>Prototype 2</strong></em></p><ul id="28ee9c88-f1ed-804a-9023-f9ee74c5ef63" class="bulleted-list"><li style="list-style-type:disc"><em>Functions as a mirror with a digital display.</em></li></ul><ul id="28ee9c88-f1ed-8087-abe1-c3a319a6ab23" class="bulleted-list"><li style="list-style-type:disc"><em>Shows </em><em><strong>weather</strong></em><em>, </em><em><strong>time</strong></em><em>, and a </em><em><strong>calendar/to-do list</strong></em><em>.</em></li></ul><ul id="28ee9c88-f1ed-8057-8497-e5aff0aa5d87" class="bulleted-list"><li style="list-style-type:disc"><em>Can be </em><em><strong>placed on a stand</strong></em><em> or </em><em><strong>hung on a wall</strong></em><em>.</em></li></ul><p id="28ee9c88-f1ed-805f-932f-fdcc5c650714" class=""><em>“During the test, please try to think aloud as you interact with the mirror—share what you expect to happen, what you find easy or difficult, and any thoughts you have about the design or layout.”</em></p><hr id="28ee9c88-f1ed-80ac-836e-fdae81a744db"/><h3 id="28ee9c88-f1ed-80b9-a196-df4131219bd3" class=""><mark class="highlight-blue_background"><strong>4. Task Execution </strong></mark></h3><p id="28ee9c88-f1ed-80ed-b494-d4ed0c36499a" class="">You will now guide the participant through each task, one at a time. Observe their behavior, record any difficulties, and take note of comments or confusion.</p><hr id="28ee9c88-f1ed-80d9-8491-ddb5ab693834"/><h3 id="28ee9c88-f1ed-80ef-88a5-e5752a4cd3ce" class=""><strong>Task 1: Complete Initial Setup Process</strong></h3><p id="28ee9c88-f1ed-806c-a1bd-fe27e4fd9a92" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-8048-95e7-c2ac8c926b85" class="">Test whether first-time users can complete the entire setup process within 5 minutes without external assistance, and assess if each step is self-explanatory with adequate feedback.</p><p id="28ee9c88-f1ed-805f-9347-db5eb06417b0" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-8009-b1f6-f1966cd1ec09" class="">[Facilitator reveals prototype 1 or 2 to the user (as setup process is identical on both), starting at the welcome screen]</p><p id="28ee9c88-f1ed-80bd-bf00-faa06e8b0995" class="">&quot;This is a brand new smart mirror that hasn&#x27;t been set up yet. Please follow the on-screen instructions to complete the setup process. I&#x27;ll be here to observe, but I won&#x27;t help unless you&#x27;re completely stuck. Let me know when you think you&#x27;re finished.”</p><p id="28ee9c88-f1ed-80da-9d2f-ca42faf11092" class="">[Facilitator starts timer. Target: 5 minutes or less]</p><p id="28ee9c88-f1ed-801d-8ef0-f1bd3236bba3" class="">[Facilitator observes and takes notes on:]</p><ul id="28ee9c88-f1ed-804d-9469-e4100d204d20" class="bulleted-list"><li style="list-style-type:disc">Which steps cause confusion or hesitation</li></ul><ul id="28ee9c88-f1ed-8047-9346-e2dab2605cc1" class="bulleted-list"><li style="list-style-type:disc">Whether user reads all on-screen instructions</li></ul><ul id="28ee9c88-f1ed-8008-ac5c-e721dcb73917" class="bulleted-list"><li style="list-style-type:disc">Any attempts to skip steps or go back</li></ul><ul id="28ee9c88-f1ed-80b2-a48e-d428d2409803" class="bulleted-list"><li style="list-style-type:disc">Facial expressions indicating frustration or confidence</li></ul><ul id="28ee9c88-f1ed-80ba-a137-e7a64877727b" class="bulleted-list"><li style="list-style-type:disc">Whether user asks for clarification (note what they ask)</li></ul><p id="28ee9c88-f1ed-8084-a218-fc984e84b917" class="">[When user completes setup or reaches 5 minutes:]</p><p id="28ee9c88-f1ed-80cc-ae46-ebe7cc2f5590" class=""><em>&quot;Great, you&#x27;ve finished the setup!&quot;</em> [or <em>&quot;Time&#x27;s up - let&#x27;s see where you got to&quot;</em>]</p><p id="28ee9c88-f1ed-8014-8645-edb59a56ed7a" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-802e-827b-fce0790dd780" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Overall, how would you describe that setup experience: Easy, Moderate, or Difficult?&quot;</em></li></ul><ul id="28ee9c88-f1ed-807d-a40f-f01e86828f48" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Were there any steps that confused you or felt unclear?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80fe-97a2-e70bfef70f4a" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Did you feel like you always knew what to do next, or were you unsure at times?&quot;</em></li></ul><ul id="28ee9c88-f1ed-808d-b678-ee55a860995a" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;The remote pairing process asked you to press specific buttons - was that clear and straightforward?&quot;</em></li></ul><ul id="28ee9c88-f1ed-809a-8169-e2aeeb7e3d81" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Did you feel confident that your settings were saved correctly?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8073-b77c-d1cf0fdc5e26" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;If you had to set up another mirror tomorrow, would you feel frustrated? or calm and confident?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8064-8201-c7631e884326" class="bulleted-list"><li style="list-style-type:disc">“How would you describe the setup process to a friend? Is it similar to things you have used before?</li></ul><p id="28ee9c88-f1ed-8006-b152-c33734be0722" class="">
+</p><h3 id="28ee9c88-f1ed-805d-a957-e1c872e167ec" class=""><strong>Task 2: View Today’s Priorities</strong></h3><p id="28ee9c88-f1ed-8030-b1e9-e2510d02b2b3" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-8098-9ce4-cf31651ccdf5" class="">Determine if the user can easily locate and understand the to-do list interface.</p><p id="28ee9c88-f1ed-8077-96da-c5f044b0835f" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-80bb-9084-e1cf0ced79da" class="">[Facilitator reveals prototype 1 to the user]</p><p id="28ee9c88-f1ed-806a-bc0f-d6a7201afa77" class="">&quot;Please approach the mirror as if you&#x27;re getting ready in the morning. Look at the mirror and point to where you think today&#x27;s important tasks are displayed. Continue checking your appearance while doing this.”</p><p id="28ee9c88-f1ed-8051-82e7-dcbe17450aeb" class="">[Facilitator times how long it takes to locate priorities - target: 5 seconds]</p><p id="28ee9c88-f1ed-80a3-a269-fe33e7c21b41" class="">&quot;Now, continue your routine for 20 seconds while occasionally glancing at the mirror.”</p><p id="28ee9c88-f1ed-8077-a982-ca55b3685c4d" class="">[After 20 seconds, facilitator covers the mirror]</p><p id="28ee9c88-f1ed-80d0-9056-de60a78e512f" class="">&quot;Without looking at the mirror, can you tell me what tasks or events you saw? Be as specific as you can about descriptions and times.”</p><p id="28ee9c88-f1ed-805a-930a-e4e61c99850b" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-8036-a674-ed6748076e02" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Did you need to stop what you were doing to read the display, or could you read it while checking your appearance?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8077-9155-c9125eac57d0" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Would you describe your experience as &#x27;glancing&#x27; or &#x27;reading carefully&#x27;?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80b2-a7c5-d0750cf09e54" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;What information did you notice first when you looked at the mirror?&quot;</em></li></ul><p id="28ee9c88-f1ed-80aa-81fe-e5303c1554d5" class="">[Facilitator hides prototype 1, replaces it with prototype 2, and repeats all above instructions]</p><hr id="28ee9c88-f1ed-804a-a1f6-ce77d6d33255"/><h3 id="28ee9c88-f1ed-80da-b724-e8f89f6e4493" class=""><strong>Task 3: Check the Current Time</strong></h3><p id="28ee9c88-f1ed-80d8-9264-d2f5d400cf18" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-80ff-a6b1-d718b95e7082" class="">Assess whether the user can find and read the date and time display.</p><p id="28ee9c88-f1ed-809c-a563-fa7c402f9c54" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-8096-96e3-f1f5a48fa8af" class="">[Facilitator reveals prototype 1 to the user]</p><p id="28ee9c88-f1ed-80d1-8dcf-e5c88bfb7eac" class=""><em>“Please show me where the current date and time are displayed on the mirror.”</em></p><p id="28ee9c88-f1ed-808c-a1e0-e7c78b1fc08a" class="">[Facilitator times how long it takes - target: 2 seconds]</p><p id="28ee9c88-f1ed-802f-b2e4-e7b4e4db3136" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-8031-aa92-ce44a525d937" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Was the date and time format immediately understandable to you?&quot;</em></li></ul><ul id="28ee9c88-f1ed-808d-a668-f102627b1332" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Would you trust this information enough to act on it without checking your phone?&quot;</em></li></ul><p id="28ee9c88-f1ed-8093-b305-ddc9c57721be" class="">[Facilitator hides prototype 1, replaces it with prototype 2, and repeats all above instructions]</p><p id="28ee9c88-f1ed-80e5-b63d-e0d8f2c0d68c" class="">
+</p><hr id="28ee9c88-f1ed-8057-8fec-e058b6a0db92"/><h3 id="28ee9c88-f1ed-8021-920f-e02711183bf3" class=""><strong>Task 4: View the Weather</strong></h3><p id="28ee9c88-f1ed-8018-bb2d-c4a2643fbcc7" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-808b-9652-f8e28b6886a2" class="">Evaluate how clearly the weather information is displayed and understood.</p><p id="28ee9c88-f1ed-802c-a893-fd2f1d17ee55" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-8029-9aa9-d4d7061e0163" class="">[Facilitator reveals prototype 1 to the user]</p><p id="28ee9c88-f1ed-8079-afd7-ec19acafb9b9" class="">[Facilitator times how long it takes for user to locate weather section - target: 5 seconds]</p><p id="28ee9c88-f1ed-80da-99c0-fb19fa6578b3" class=""><em>&quot;Now, tell me what today&#x27;s weather looks like. Specifically, what is the high temperature, low temperature, and chance of rain or snow?&quot;</em></p><p id="28ee9c88-f1ed-8050-bf71-d456a4824b56" class="">[Facilitator times how long it takes to process and verbalize all three components]</p><p id="28ee9c88-f1ed-80aa-bc62-c023e6f78346" class=""><em>&quot;Based on this weather information, would you bring an umbrella today? What type of clothing would you wear?&quot;</em></p><p id="28ee9c88-f1ed-80fa-af93-e806d3620039" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-80fa-8bbb-dafc6b949cff" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Were the weather icons and symbols immediately clear to you without explanation?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8035-87a9-fc7ee7d3d2e5" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Does this weather presentation match what you&#x27;re used to seeing in other weather apps?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80e4-9751-e3ca562149d8" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Would you trust this information without checking the weather on your phone?&quot;</em></li></ul><p id="28ee9c88-f1ed-80f1-bf19-faa328ddeb56" class="">[Facilitator hides prototype 1, replaces it with prototype 2, and repeats all above instructions]</p><hr id="28ee9c88-f1ed-8016-8795-d580bb75fa90"/><h3 id="28ee9c88-f1ed-8001-b964-f284c52a6cc2" class=""><strong>Task 5: Adjust Display Brightness</strong></h3><p id="28ee9c88-f1ed-80e8-b817-de1f4e31f443" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-80c4-85c5-f276fd7f2c84" class="">Ensure users can locate and use the lighting control effectively.</p><p id="28ee9c88-f1ed-8028-adb0-cabf8ea638d6" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-807a-8912-d0abdcaf2379" class="">[Facilitator reveals prototype 1 to the user]</p><p id="28ee9c88-f1ed-80d2-a304-cd4b67cff8d7" class=""><em>&quot;Without any guidance from me, please try to adjust the brightness of the display. Try making it brighter first, then dimmer. As this is a paper prototype, I will verbally express the brightness status of the display when you adjust it&quot;</em></p><p id="28ee9c88-f1ed-8011-b246-c3b3e091c136" class="">[Facilitator times how long it takes to locate and successfully adjust brightness the first time - target: within 10 seconds to locate]</p><p id="28ee9c88-f1ed-80e4-b61a-dfff164c84d6" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-8018-8d50-f037860ed6b6" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Was the button placement intuitive and easy to find?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80de-9396-fcc3191e9665" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Did you find the adjustment process disruptive or seamless?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80ee-a3d8-c264adb78581" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Do you think you would remember how to adjust the brightness next time?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8012-9400-e32d1ba80159" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Does the brightness control interfere with using the mirror normally?&quot;</em></li></ul><p id="28ee9c88-f1ed-80af-b742-e26c90c5d957" class="">[Facilitator hides prototype 1, replaces it with prototype 2, and repeats all above instructions]</p><hr id="28ee9c88-f1ed-8063-9440-fa2c37d257a7"/><h3 id="28ee9c88-f1ed-80f0-b9a0-c64c290a0401" class=""><strong>Task 6: Using the Mirror</strong></h3><p id="28ee9c88-f1ed-800e-8a21-dfe7706ca19a" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-80d6-87bb-cd65dee295b4" class="">Gauge how the physical mirror functionality integrates with the displayed UI and whether the screen layout obstructs the reflection.</p><p id="28ee9c88-f1ed-8017-9c7b-f370f455f6f0" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-80c0-a60f-c324a1ebf058" class="">[Facilitator reveals prototype 1 to the user]</p><p id="28ee9c88-f1ed-809d-8196-e03fcb2a3ca1" class=""><em>&quot;Please use this mirror as you normally would in the morning. Check your appearance, adjust your hair or clothing, and simulate checking your teeth. While you&#x27;re doing that, try to also read some of the information displayed on the screen.&quot;</em></p><p id="28ee9c88-f1ed-80cc-85a6-f67878bc5eb3" class="">[Allow user to interact naturally for 30-60 seconds. Facilitator observes whether user naturally multitasks or focuses on one function at a time]</p><p id="28ee9c88-f1ed-80da-acce-cdcc2f088a05" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-801e-b9a6-fe1317d15fda" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Does the size and placement of the information block any important parts of your reflection?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8093-b4b6-e62d5f97aeef" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Did you find yourself naturally using it for both purposes at the same time, or did you focus on one thing at a time?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80d2-bacb-f951b9fc2ce6" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Rate the visual balance between the information and your reflection: Poor, Fair, Good, or Excellent?&quot;</em></li></ul><p id="28ee9c88-f1ed-804d-824b-e5fa9f4dd9fb" class="">[Facilitator hides prototype 1, replaces it with prototype 2, and repeats all above instructions]</p><hr id="28ee9c88-f1ed-80c4-9c24-c0b02f1e5c39"/><h3 id="28ee9c88-f1ed-803a-a31e-ea398bb43baf" class=""><strong>Task 7: Integrate the Mirror into Daily Routine</strong></h3><p id="28ee9c88-f1ed-804c-8702-ff4284df6d2f" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-8053-a4d3-d4c96b7396aa" class="">Test whether the user understands the mirror&#x27;s physical setup options and would integrate it into their space.</p><p id="28ee9c88-f1ed-80b3-b7a0-d8f857175f7c" class=""><strong>Instructions (depends on prototype):</strong></p><p id="28ee9c88-f1ed-80db-8159-eac00ae3e966" class="">[Facilitator presents prototype 1 to the user]</p><p id="28ee9c88-f1ed-804b-a9a7-fcbab524539d" class=""><strong>For Prototype 1:</strong></p><ul id="28ee9c88-f1ed-8076-8492-fa078a0aeb7e" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Please identify where and how you can hang this mirror on a wall.&quot;</em></li></ul><ul id="28ee9c88-f1ed-8078-b1e2-db8b2706158f" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Now, show me how the hinge can be used as a stand for placing the mirror on a surface.&quot;</em></li></ul><p id="28ee9c88-f1ed-8062-b960-d17e9a93ff50" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-80d0-a068-db045ed64a55" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Was it easy to identify these mounting options?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8046-a4c9-d27bc4c500de" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Does the mirror size seem appropriate for a bathroom counter or bedroom dresser?&quot;</em></li></ul><ul id="28ee9c88-f1ed-807e-b50b-e42237675573" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Does the design complement or clash with typical home décor?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80a6-bdfb-f096974bb45b" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Would you be willing to integrate this mirror into your bedroom or bathroom furniture? Why or why not?&quot;</em></li></ul><p id="28ee9c88-f1ed-80b8-b6ef-ffe2ef4c9218" class="">[Facilitator presents prototype 2 to the user]</p><p id="28ee9c88-f1ed-80f6-80f4-f1dc6f24aeee" class=""><strong>For Prototype 2:</strong></p><ul id="28ee9c88-f1ed-80f3-9313-f94f4096341f" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Please show me the stand and demonstrate how it can be attached or removed.&quot;</em></li></ul><p id="28ee9c88-f1ed-8013-8aba-c0ada7dc55d9" class="">
+</p><h3 id="28ee9c88-f1ed-802c-bcec-c69ebc0e15e6" class=""><strong>Task 8: Access and Navigate Settings Menu</strong></h3><p id="28ee9c88-f1ed-8007-92f1-fe7947acfcc6" class=""><strong>Objective:</strong></p><p id="28ee9c88-f1ed-8082-8983-e0c1c2e33190" class="">Evaluate whether users can discover and access the settings menu without instruction, and assess if the entry method is intuitive and memorable.</p><p id="28ee9c88-f1ed-80a6-90d5-caa3eb6a4795" class=""><strong>Instructions:</strong></p><p id="28ee9c88-f1ed-80e9-a648-c5d8e9d90887" class="">[Facilitator presents prototype 1 to the user, showing the main mirror display]</p><p id="28ee9c88-f1ed-8079-a786-f9cbeafcaf61" class=""><em>&quot;Imagine you want to change some settings on this mirror - maybe the temperature unit or brightness. Without any help from me, try to access the settings menu using the remote control.&quot;</em></p><p id="28ee9c88-f1ed-8018-810a-e623e6dd231e" class="">[Facilitator times how long it takes to successfully access settings - target: 20 seconds or less]</p><p id="28ee9c88-f1ed-80f4-b198-e697cfb44442" class="">[Facilitator observes:]</p><ul id="28ee9c88-f1ed-80c2-a14e-fbc7c3d4da25" class="bulleted-list"><li style="list-style-type:disc">Which buttons the user tries first</li></ul><ul id="28ee9c88-f1ed-80a3-a398-ede45cc12b70" class="bulleted-list"><li style="list-style-type:disc">Whether they look for visual cues on the display</li></ul><ul id="28ee9c88-f1ed-80af-8e51-f5fefc99c959" class="bulleted-list"><li style="list-style-type:disc">Signs of frustration or confusion</li></ul><ul id="28ee9c88-f1ed-809c-8841-c8abdd256a46" class="bulleted-list"><li style="list-style-type:disc">Whether they discover the method through exploration or give up</li></ul><p id="28ee9c88-f1ed-807a-abfa-d9a2728f421c" class="">[Once user accesses settings (or after 60 seconds if unsuccessful):]</p><p id="28ee9c88-f1ed-80e9-8215-eef0bfb1710b" class=""><em>&quot;Now, please navigate to the temperature unit setting and toggle between Celsius and Fahrenheit.&quot;</em></p><p id="28ee9c88-f1ed-808d-9cde-cf1b1d517af9" class="">[Facilitator observes navigation ease and times the task]</p><p id="28ee9c88-f1ed-8023-ae34-cb75bd7c8f97" class=""><em>&quot;Finally, exit the settings menu and return to the main display.&quot;</em></p><p id="28ee9c88-f1ed-800a-8a01-d04df9ea3f36" class="">[Facilitator asks follow-up questions:]</p><ul id="28ee9c88-f1ed-806c-b2dd-d9b4960f80e4" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;How did you figure out how to access the settings menu?&quot;</em> [If they struggled: <em>&quot;What made it difficult to find?&quot;</em>]</li></ul><ul id="28ee9c88-f1ed-80bc-b99b-c8c919288e81" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Was navigating through the settings menu intuitive? Did you always know which button to press?&quot;</em></li></ul><ul id="28ee9c88-f1ed-80ce-829f-ef7b148518a3" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;If you needed to change a setting tomorrow, would you remember how to access the menu?&quot;</em></li></ul><ul id="28ee9c88-f1ed-8055-b2b7-d56af4f415ce" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;Did the settings categories feel logically organized?&quot;</em></li></ul><ul id="28ee9c88-f1ed-803b-9484-fd2f7a1a1f30" class="bulleted-list"><li style="list-style-type:disc"><em>&quot;When you made changes, were you confident they were saved, or were you unsure?&quot;</em></li></ul><p id="28ee9c88-f1ed-808a-9784-e226feb8fae9" class="">[Facilitator hides prototype 1, replaces it with prototype 2, and repeats all above instructions]</p><p id="28ee9c88-f1ed-8093-a96b-ea7a1128be3c" class="">[Facilitator specifically notes:]</p><ul id="28ee9c88-f1ed-8064-ba73-e736368e528c" class="bulleted-list"><li style="list-style-type:disc">Time difference between visible gear icon (prototype 1) vs. hidden long-press method (prototype 2)</li></ul><ul id="28ee9c88-f1ed-80c6-a130-c37cc34d12ac" class="bulleted-list"><li style="list-style-type:disc">User preference for discoverability vs. minimalism</li></ul><hr id="28ee9c88-f1ed-80f4-91da-e4a0809cac46"/><h3 id="28ee9c88-f1ed-80e6-9c3a-c297e0a61c31" class=""><mark class="highlight-blue_background"><strong>5. Post-Test Questionnaire</strong></mark></h3><p id="28ee9c88-f1ed-80e0-9ee1-ea13b820ff46" class=""><em>“Thank you for completing the tasks! Please fill out this short post-test questionnaire. It will help us understand your overall experience with the smart mirror, including what you found easy, difficult, or confusing.”</em></p><hr id="28ee9c88-f1ed-8046-b369-c18703b88fc4"/><h3 id="28ee9c88-f1ed-801f-aac4-c273bc26156b" class=""><mark class="highlight-blue_background"><strong>6. Closing and Debrief</strong></mark></h3><p id="28ee9c88-f1ed-803b-91b6-d37133c0bac5" class=""><em>“Thank you again for participating in our usability test. Your feedback is very valuable and will help us improve the design and user experience of our smart mirror. Do you have any final thoughts or suggestions you’d like to share before we end the session?”</em></p><p id="28ee9c88-f1ed-800d-9b38-c26e9b5500fe" class="">
+</p><h2 id="28ee9c88-f1ed-8012-8866-f6db379f8888" class="">Data Collection Sheet</h2><p id="28ee9c88-f1ed-80a9-aeee-f5ee4430dd2c" class=""><strong>Prototype 1 - User 2</strong></p><table id="28ee9c88-f1ed-80f0-9448-cb1de17537f9" class="simple-table"><tbody><tr id="28ee9c88-f1ed-80c9-9baf-d3e3a428c85e"><td id="tjQ]" class="" style="width:138.66666666666666px">Test Task</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful?</td><td id="sQUW" class="" style="width:397.66253662109375px">User Feedback &amp; Observation</td></tr><tr id="28ee9c88-f1ed-808d-937d-df0661b9c0ad"><td id="tjQ]" class="" style="width:138.66666666666666px">T1  - Complete Initial Setup Process</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Completed in 4min with 17s; efficient and confident. Clear on instructions but didn’t like holding a button 5s for settings. Minor hesitation during Wi-Fi connection. Felt confident settings saved. Would feel “calm and confident” repeating it.</td></tr><tr id="28ee9c88-f1ed-8043-b124-fb45c540ac91"><td id="tjQ]" class="" style="width:138.66666666666666px">T2  - View today’s priorities</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Located tasks quickly but noted the text was too small. Mentioned people might not wear glasses in the morning and could struggle. Could glance while brushing teeth but not fully read.</td></tr><tr id="28ee9c88-f1ed-80d9-8643-c673d382ac24"><td id="tjQ]" class="" style="width:138.66666666666666px">T3 - Check the current time</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Located time instantly. Said he’d trust it and didn’t need to double check his phone.</td></tr><tr id="28ee9c88-f1ed-808e-a4a5-ee1c35d7ade8"><td id="tjQ]" class="" style="width:138.66666666666666px">T4 - View the weather</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Located weather easily; clear understanding of symbols. easily; clear understanding of symbols.Said it “looks like phone apps.” Trusted it for outfit decisions.</td></tr><tr id="28ee9c88-f1ed-80da-b784-f467059db3b8"><td id="tjQ]" class="" style="width:138.66666666666666px">T5 - Adjust Display Brightness</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Remembered the 5s hold; did it correctly. Found it “annoying” and “too slow.” Suggested brightness could work like adjusting TV volume. </td></tr><tr id="28ee9c88-f1ed-8018-84eb-d9a5a1b80a6c"><td id="tjQ]" class="" style="width:138.66666666666666px">T6 - Using the mirror </td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Needed to focus on either reflection or display. Said “it’s too small,” reflection area limited. Rated <em>Poor</em> for visual balance.</td></tr><tr id="291e9c88-f1ed-8084-b2d4-d3f9e065d49f"><td id="tjQ]" class="" style="width:138.66666666666666px">T7 - Integrate the Mirror into Daily Routine</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Understood stand/hinge quickly.</td></tr><tr id="291e9c88-f1ed-8052-a75f-f944dafeed50"><td id="tjQ]" class="" style="width:138.66666666666666px">T8- Access and Navigate Settings Menu</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:397.66253662109375px">Navigated settings successfully. Confused by “widgets.” Suggested clearer terminology; otherwise intuitive. Confident that settings saved properly.</td></tr></tbody></table><p id="28ee9c88-f1ed-80a1-bd95-e544f435feaa" class=""><strong>Prototype 2 - User 1</strong></p><table id="28ee9c88-f1ed-80ce-abcf-c478dded0450" class="simple-table"><tbody><tr id="28ee9c88-f1ed-80a5-8965-cd05f83921cc"><td id="tjQ]" class="" style="width:138.66666666666666px">Test Task</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful?</td><td id="sQUW" class="" style="width:399.66253662109375px">User Feedback &amp; Observation</td></tr><tr id="28ee9c88-f1ed-807f-9716-c1a7a7544b5c"><td id="tjQ]" class="" style="width:138.66666666666666px">T1  - Complete Initial Setup Process</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Understood all steps, slight confusion with Wi-Fi connection instructions but completed setup in 4min with 38s. Described setup as “moderate,” similar to “old TV setup.” Found the long press (5s) to access settings “annoying.” Felt confident settings were saved. Would feel “a bit annoyed” repeating setup.</td></tr><tr id="28ee9c88-f1ed-803b-91de-e997fa0ed212"><td id="tjQ]" class="" style="width:138.66666666666666px">T2  - View today’s priorities</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Located reminders quickly but found text too small and difficult to read when multitasking. Described layout as “a bit basic.” Said the time was the first thing he noticed.</td></tr><tr id="28ee9c88-f1ed-80d5-8938-c1c957419d1c"><td id="tjQ]" class="" style="width:138.66666666666666px">T3 - Check the current time</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Located time immediately; understood the format. Commented that the time not being centered was “a bit off,” but he still trusted it.</td></tr><tr id="28ee9c88-f1ed-8092-a79d-db0f41f3af93"><td id="tjQ]" class="" style="width:138.66666666666666px">T4 - View the weather</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Found weather quickly and recognized icons without difficulty. Said icons were “clear” but disliked how the high/low temperatures were shown “too cramped.” Trusted the info enough to dress based on it.</td></tr><tr id="28ee9c88-f1ed-80ef-8f43-d6362a525589"><td id="tjQ]" class="" style="width:138.66666666666666px">T5 - Adjust Display Brightness</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Initially forgot about long press method and took a few seconds to recall it. Called the process “slow” and “unnecessary.” Would remember it but found it frustrating.</td></tr><tr id="28ee9c88-f1ed-8001-8d8b-c67fe6dcfe00"><td id="tjQ]" class="" style="width:138.66666666666666px">T6 - Using the mirror </td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Reflected area too small; mirror text took up visual space.  Suggested moving info into corners and removing city name to maximize mirror space. Rated visual balance <em>Poor</em></td></tr><tr id="291e9c88-f1ed-80ed-b368-ec9deb60b19d"><td id="tjQ]" class="" style="width:138.66666666666666px">T7 - Integrate the Mirror into Daily Routine</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Quickly identified hinge and stand usage. Preferred wall mounted installation: “If it’s a smart mirror, it should stay in one place.”</td></tr><tr id="291e9c88-f1ed-8065-aba0-eab855d6c4e0"><td id="tjQ]" class="" style="width:138.66666666666666px">T8- Access and Navigate Settings Menu</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Remembered long-press method but confused by “widgets” section. Expected calendar options under “Calendar,” not “Widgets.” Found saving settings clear but naming unclear.</td></tr></tbody></table><p id="28ee9c88-f1ed-80b7-93a0-e1df8f92d1ca" class=""><strong>Prototype 1 - User 2</strong></p><table id="28ee9c88-f1ed-8041-a54b-fef36cd5da4b" class="simple-table"><tbody><tr id="28ee9c88-f1ed-8097-8ef3-f113b11779c9"><td id="tjQ]" class="" style="width:138.66666666666666px"><strong>Test Task</strong></td><td id="BK`h" class="" style="width:138.66666666666666px"><strong>Successful?</strong></td><td id="sQUW" class="" style="width:399.66253662109375px"><strong>User Feedback &amp; Observation</strong></td></tr><tr id="28ee9c88-f1ed-80a9-979e-d331194937be"><td id="tjQ]" class="" style="width:138.66666666666666px">T1  - Complete Initial Setup Process</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Understood setup immediately; fast and confident. Said process was “simple and clear.” Preferred visible icons.</td></tr><tr id="28ee9c88-f1ed-803d-9b3d-e18c9bdfab29"><td id="tjQ]" class="" style="width:138.66666666666666px">T2  - View today’s priorities</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Quickly located priorities (6s). Recalled “yoga” and “lunch reception.” Could glance while doing other actions. Time was first noticed.</td></tr><tr id="28ee9c88-f1ed-804e-9e60-fd26479c82a1"><td id="tjQ]" class="" style="width:138.66666666666666px">T3 - Check the current time</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Located instantly. Said date/time format was familiar and easy to trust.</td></tr><tr id="28ee9c88-f1ed-8050-9dbf-c06694144e30"><td id="tjQ]" class="" style="width:138.66666666666666px">T4 - View the weather</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Located in 5s; processed info quickly. Said it “matches other weather apps” and trusted the info.</td></tr><tr id="28ee9c88-f1ed-806c-a874-fb11d5443eae"><td id="tjQ]" class="" style="width:138.66666666666666px">T5 - Adjust Display Brightness</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Located quickly. Found steps “too long” and “annoying to repeat.” Wanted simpler toggle.</td></tr><tr id="28ee9c88-f1ed-8010-b20e-ecc9d38e69d8"><td id="tjQ]" class="" style="width:138.66666666666666px">T6 - Using the mirror </td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Could use both reflection and data separately. Said he couldn’t multitask; reflection blocked top portion. Rated <em>Good</em> balance.</td></tr><tr id="291e9c88-f1ed-80ee-83b5-c2b08a6ef254"><td id="tjQ]" class="" style="width:138.66666666666666px">T7 - Integrate the Mirror into Daily Routine</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Understood stand and hanging method.</td></tr><tr id="291e9c88-f1ed-803e-bd24-e935c792900c"><td id="tjQ]" class="" style="width:138.66666666666666px">T8- Access and Navigate Settings Menu</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Accessed settings and navigated correctly. Found it intuitive and easy to remember. Liked how changes saved automatically.</td></tr></tbody></table><p id="28ee9c88-f1ed-8018-a1bf-dcba4c3788ae" class=""><strong>Prototype 2 - User 1</strong></p><table id="28ee9c88-f1ed-8031-8633-d306ea638d19" class="simple-table"><tbody><tr id="28ee9c88-f1ed-808e-9c43-c5d0f5f070eb"><td id="tjQ]" class="" style="width:138.66666666666666px"><strong>Test Task</strong></td><td id="BK`h" class="" style="width:138.66666666666666px"><strong>Successful?</strong></td><td id="sQUW" class="" style="width:399.66253662109375px"><strong>User Feedback &amp; Observation</strong></td></tr><tr id="28ee9c88-f1ed-8039-80d3-d6e69b7c2d52"><td id="tjQ]" class="" style="width:138.66666666666666px">T1  - Complete Initial Setup Process</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Completed setup easily; clear understanding of steps. Described as <em>moderate difficulty</em>;. </td></tr><tr id="28ee9c88-f1ed-80f8-9366-c2eea18d2bc2"><td id="tjQ]" class="" style="width:138.66666666666666px">T2  - View today’s priorities</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Initially unsure how to act out task scenario but adapted quickly. Located priorities in 4s. Recalled two of four tasks (“yoga” and “meetings”). Described experience as “glancing.” Noticed time first.</td></tr><tr id="28ee9c88-f1ed-80e8-ac76-da285397a569"><td id="tjQ]" class="" style="width:138.66666666666666px">T3 - Check the current time</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Located immediately. Found date and time format “perfectly clear.” Would trust it without checking phone.</td></tr><tr id="28ee9c88-f1ed-80d3-83d6-f36bed7f9a8e"><td id="tjQ]" class="" style="width:138.66666666666666px">T4 - View the weather</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Found weather within target time. Said icons were “immediately understandable.” Trusted the information and said it looked similar to weather apps.</td></tr><tr id="28ee9c88-f1ed-8003-86d5-fccfb3f5ff05"><td id="tjQ]" class="" style="width:138.66666666666666px">T5 - Adjust Display Brightness</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Said it was “a bit disruptive” because there were “too many steps.” Liked visible control but wanted a simpler method.</td></tr><tr id="28ee9c88-f1ed-80b0-885f-daa486ead951"><td id="tjQ]" class="" style="width:138.66666666666666px">T6 - Using the mirror </td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Information overlays blocked top of his head reflection. Needed to focus on one activity at a time. Said multitasking was hard. Rated visual balance <em>Good.</em></td></tr><tr id="291e9c88-f1ed-80e1-b9fe-cb5b176689ad"><td id="tjQ]" class="" style="width:138.66666666666666px">T7 - Integrate the Mirror into Daily Routine</td><td id="BK`h" class="" style="width:138.66666666666666px">Partially successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Identified hinge quickly. Said stand was “too small for the mirror size.” </td></tr><tr id="291e9c88-f1ed-80d2-a428-c5b46814f7f7"><td id="tjQ]" class="" style="width:138.66666666666666px">T8- Access and Navigate Settings Menu</td><td id="BK`h" class="" style="width:138.66666666666666px">Successful</td><td id="sQUW" class="" style="width:399.66253662109375px">Accessed settings easily using visible button. Found navigation intuitive and memorable. Liked having a visible settings entry instead of long press.</td></tr></tbody></table><h2 id="28ee9c88-f1ed-8025-80a9-f42162944fb6" class="">Post-Test Questionnaire</h2><p id="28ee9c88-f1ed-8006-9c28-c5204cb98c6e" class=""><a href="https://forms.gle/BchpyNt4GjH8V5Xr7">https://forms.gle/BchpyNt4GjH8V5Xr7</a></p><h2 id="291e9c88-f1ed-8097-8497-c29dbb1916d2" class="">Documentation of testing</h2><figure id="292e9c88-f1ed-8029-928c-ef39bb830937" class="image"><a href="c0a35e84-19c8-4535-a491-8fb2f5d77ce0.png"><img style="width:480px" src="c0a35e84-19c8-4535-a491-8fb2f5d77ce0.png"/></a></figure><figure id="292e9c88-f1ed-80d2-8fe2-c87966405e52" class="image"><a href="313a9c01-0bf5-451a-9a9b-3184629dcaf8.png"><img style="width:480px" src="313a9c01-0bf5-451a-9a9b-3184629dcaf8.png"/></a></figure><figure id="292e9c88-f1ed-8023-8a74-f0457d4c5916" class="image"><a href="ae06722e-8103-4d37-b303-a3dcc1f7a8bc.png"><img style="width:480px" src="ae06722e-8103-4d37-b303-a3dcc1f7a8bc.png"/></a></figure><figure id="292e9c88-f1ed-8092-9556-f9dd5a5e249d" class="image"><a href="3c99acdb-ebac-4335-87fa-d667a04fe77a.png"><img style="width:480px" src="3c99acdb-ebac-4335-87fa-d667a04fe77a.png"/></a></figure><p id="292e9c88-f1ed-8090-95fe-de0cd58fa94e" class="">
+</p><p id="292e9c88-f1ed-807a-9441-d46c63764bb6" class="">Here is the link to the video:<br/><a href="https://youtube.com/shorts/DUrDw8S82MA?si=qRx8srywYR1gc620">https://youtube.com/shorts/DUrDw8S82MA?si=qRx8srywYR1gc620</a></p><h3 id="292e9c88-f1ed-80f5-afe9-f69500ce93c0" class="">Participant 1 Consent Form and pre/post Test Questionnaires</h3><figure id="292e9c88-f1ed-8026-91ca-dd02cbbf4941"><div class="source"><a href="Gonzalo_Consent_Form.pdf">Gonzalo Consent Form.pdf</a></div></figure><figure id="292e9c88-f1ed-80a8-a9f2-fd826f569514" class="image"><a href="image.png"><img style="width:710px" src="image.png"/></a></figure><p id="292e9c88-f1ed-8093-ac69-dd472fa53c3c" class="">
+</p><h3 id="292e9c88-f1ed-802d-8ca0-ed381118a1af" class="">Participant 2 Consent Form and pre/post Test Questionnaires</h3><figure id="292e9c88-f1ed-809a-a369-c7769d8add9a"><div class="source"><a href="Schneider_Consent_Form.pdf">Schneider Consent Form.pdf</a></div></figure><p id="292e9c88-f1ed-80f6-9813-f29d56da4860" class="">
+</p><figure id="292e9c88-f1ed-8075-8ebf-cb8aa5009e24" class="image"><a href="image%201.png"><img style="width:710px" src="image%201.png"/></a></figure><h2 id="291e9c88-f1ed-80fb-ae09-d3acf7ee73f1" class="">Comparative Summary</h2><table id="291e9c88-f1ed-8047-843b-e05c6afbca99" class="simple-table"><tbody><tr id="291e9c88-f1ed-8096-b367-f30ba5dee410"><td id=":svu" class="" style="width:181.66666666666666px">Category</td><td id="@G[z" class="" style="width:181.66666666666666px">User 1 Preference</td><td id="BXzA" class="" style="width:317.66253662109375px">User 2 Preference</td></tr><tr id="291e9c88-f1ed-80db-87c0-c37dba2a8997"><td id=":svu" class="" style="width:181.66666666666666px">Virtual Design</td><td id="@G[z" class="" style="width:181.66666666666666px">Preferred Prototype 2 for lighting aesthetics</td><td id="BXzA" class="" style="width:317.66253662109375px">Preferred Prototype 2 visually, but 1 for practicality</td></tr><tr id="291e9c88-f1ed-8081-a757-e7c07a2a021e"><td id=":svu" class="" style="width:181.66666666666666px">Setup Process</td><td id="@G[z" class="" style="width:181.66666666666666px">Smooth in both; disliked long press</td><td id="BXzA" class="" style="width:317.66253662109375px">Smooth in both; preferred visible buttons</td></tr><tr id="291e9c88-f1ed-800a-94cc-ca7d9a4c2043"><td id=":svu" class="" style="width:181.66666666666666px">Text Visibility</td><td id="@G[z" class="" style="width:181.66666666666666px">Found text too small in both</td><td id="BXzA" class="" style="width:317.66253662109375px">Agreed text too small, especially for to-dos</td></tr><tr id="291e9c88-f1ed-80d6-bd2b-fc5b8c467794"><td id=":svu" class="" style="width:181.66666666666666px">Brightness Control</td><td id="@G[z" class="" style="width:181.66666666666666px">Appreciated touch button on prototype 1 but wanted simpler</td><td id="BXzA" class="" style="width:317.66253662109375px">Same, visible button but too many steps</td></tr><tr id="291e9c88-f1ed-80ae-9ad7-e7c8db98be10"><td id=":svu" class="" style="width:181.66666666666666px">Mirror Usability</td><td id="@G[z" class="" style="width:181.66666666666666px">Wanted info in corners to improve reflection</td><td id="BXzA" class="" style="width:317.66253662109375px">Said reflection was too small in both</td></tr><tr id="291e9c88-f1ed-80db-a125-f1f14fd71917"><td id=":svu" class="" style="width:181.66666666666666px">Settings Navigation</td><td id="@G[z" class="" style="width:181.66666666666666px">Preferred visible settings entry on prototype 1</td><td id="BXzA" class="" style="width:317.66253662109375px">Same, intuitive, memorable</td></tr><tr id="291e9c88-f1ed-8061-88b3-cc08487136ef"><td id=":svu" class="" style="width:181.66666666666666px">Physical Design</td><td id="@G[z" class="" style="width:181.66666666666666px">Liked wall mounting</td><td id="BXzA" class="" style="width:317.66253662109375px">Liked wall mounting; stand too small</td></tr></tbody></table><p id="292e9c88-f1ed-80cc-b28d-ceaad337c6b0" class="">
+</p><h1 id="292e9c88-f1ed-8072-a37c-ddb33b066c41" class=""><mark class="highlight-teal_background">Summary of Test Results</mark></h1><h2 id="28ee9c88-f1ed-80b4-8c3f-d2e5afb7c017" class="">Key Insights</h2><ul id="291e9c88-f1ed-8038-ac50-f5b3c651441a" class="bulleted-list"><li style="list-style-type:disc">Prototype 1 outperformed Prototype 2 in discoverability and ease of use, especially for settings access.</li></ul><ul id="291e9c88-f1ed-80e9-bf35-f907512315f2" class="bulleted-list"><li style="list-style-type:disc">The long press interaction for pulling up the settings in Prototype 1 consistently frustrated users.</li></ul><ul id="291e9c88-f1ed-8051-8f0f-e07242b9c3c2" class="bulleted-list"><li style="list-style-type:disc">Text size and reflection balance remain top usability concerns.</li></ul><ul id="291e9c88-f1ed-80e7-a550-f297e3f95f71" class="bulleted-list"><li style="list-style-type:disc">Participants want stability and permanence, wall mounted mirror were preferred.</li></ul><ul id="291e9c88-f1ed-8096-84a4-eb3291c07f38" class="bulleted-list"><li style="list-style-type:disc">Terminology clarity (”Widgets”) and brightness adjustment flow need redesign.</li></ul><ul id="292e9c88-f1ed-8058-a78f-e01f9515991f" class="bulleted-list"><li style="list-style-type:disc">Participants prefer to have the option to move “Widgets” to where they please.</li></ul><ul id="292e9c88-f1ed-8001-9aed-d07878f8a1e0" class="bulleted-list"><li style="list-style-type:disc">Participants prefer to have USBC plug on the bottom or the side rather than back.</li></ul><h2 id="28ee9c88-f1ed-80ed-a1eb-eb773ff16048" class="">Design Recommendations</h2><ul id="291e9c88-f1ed-80b9-970b-d514e7a59f41" class="bulleted-list"><li style="list-style-type:disc">Replace all long press functions with visible icons or quick access buttons.</li></ul><ul id="291e9c88-f1ed-805b-80ef-e7ec99c80a00" class="bulleted-list"><li style="list-style-type:disc">Enlarge text and increase contrast, prioritizing glance-ability.</li></ul><ul id="291e9c88-f1ed-8009-adee-f3a649ef6554" class="bulleted-list"><li style="list-style-type:disc">Reorganize UI elements to corners to maximize reflection area.</li></ul><ul id="291e9c88-f1ed-8024-b278-d72a6e6fb3e1" class="bulleted-list"><li style="list-style-type:disc">Simplify brightness adjustment with a one step slider or toggle.</li></ul><ul id="291e9c88-f1ed-80f3-9af8-e2dac1e0c051" class="bulleted-list"><li style="list-style-type:disc">Rename “Widgets” to clearer terms.</li></ul><ul id="291e9c88-f1ed-809e-875c-ee79a8d54574" class="bulleted-list"><li style="list-style-type:disc">Offer two mounting configurations, stable wall mount and optional stand.</li></ul><ul id="292e9c88-f1ed-8039-b256-c50ddabef7f1" class="bulleted-list"><li style="list-style-type:disc">Placing USBC power plug on bottom or side instead of on back.</li></ul><ul id="292e9c88-f1ed-80eb-b0ab-ff770178b601" class="bulleted-list"><li style="list-style-type:disc">Allow users to move around “Widgets” based on their preference. </li></ul><h2 id="291e9c88-f1ed-80d2-bd03-f1fb2a168c05" class="">Summary Conclusions</h2><p id="291e9c88-f1ed-8060-be50-c2b58a071776" class="">Both participants completed all tasks successfully, with Prototype 1 showing higher usability and lower frustration. Prototype 2 was visually preferred, but functional improvements particularly around text size, control discoverability, and physical design are essential for the next iteration.</p><p id="28ee9c88-f1ed-807e-a138-ef51d3233bed" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
