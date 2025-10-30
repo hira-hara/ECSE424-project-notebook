@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "HCI Project access restricted"
+AuthUserFile /home/2023/iozdem3/webpasswords/.htpasswd
+Require valid-user
