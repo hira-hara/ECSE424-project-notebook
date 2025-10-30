@@ -106,9 +106,9 @@ main {
 }
 
 .pdf-container iframe {
-    width: 100%;
+    width: 300%;
     /* CRITICAL: Increased fixed height for a much larger display */
-    height: 750px; 
+    height: 800px; 
     border: 2px solid #ccc;
     border-radius: 0.5rem;
     display: block;
