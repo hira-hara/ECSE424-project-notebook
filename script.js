@@ -31,10 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <h1>Smart Mirror Luma</h1>
       <p class="subtitle">A Smart Mirror Project</p>
       <div class="team">
-        <p>Team Member 1</p>
-        <p>Team Member 2</p>
-        <p>Team Member 3</p>
-        <p>Team Member 4</p>
+        <p>Ida Su Ozdemir</p>
+        <p>Saif Shahin</p>
+        <p>Melissa Salazar Cruz</p>
       </div>
     `;
   }
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   links.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      const page = link.getAttribute("data-page");
+      const page = link.getAttribute("href"); // CHANGED: Use href instead of data-page
       loadPage(page);
     });
   });
