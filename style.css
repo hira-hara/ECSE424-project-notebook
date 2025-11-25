@@ -106,13 +106,39 @@ main {
   background-color: #f9f9f9;
 }
 
-.iframe {
-  width: 300%;
-  /* CRITICAL: Increased fixed height for a much larger display */
-  height: 300vh;
+/* Updated to target the tag directly or use class="iframe" */
+iframe, .iframe {
+  width: 100%;       /* Changed from 300% which might break mobile views */
+  height: 80vh;      /* Use viewport height for better responsiveness */
   border: 2px solid #ccc;
   border-radius: 0.5rem;
   display: block;
-  /* Optional: Ensure the iframe itself is visually subtle */
   background-color: white;
+  margin-bottom: 10px;
+}
+
+/* --- New Styles Moved from HTML --- */
+
+.placeholder-text {
+  color: #100202;
+  border: 1px dashed #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.file-list {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.file-list li {
+  margin-bottom: 8px;
+}
+
+.file-list code {
+  background-color: #eee;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
 }
