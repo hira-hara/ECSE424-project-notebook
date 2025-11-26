@@ -117,7 +117,6 @@ iframe, .iframe {
   margin-bottom: 10px;
 }
 
-/* --- New Styles Moved from HTML --- */
 
 .placeholder-text {
   color: #100202;
@@ -141,4 +140,30 @@ iframe, .iframe {
   padding: 2px 5px;
   border-radius: 4px;
   font-family: monospace;
+}
+
+/* Simple styles for placeholder content */
+.placeholder-text {
+    /* font-style: italic; */
+    color: #100202;
+    border: 1px dashed #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.file-list {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.file-list li {
+    margin-bottom: 8px;
+}
+
+.file-list code {
+    background-color: #eee;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
 }
