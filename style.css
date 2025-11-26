@@ -109,7 +109,7 @@ main {
 /* Updated to target the tag directly or use class="iframe" */
 iframe, .iframe {
   width: 100%;       /* Changed from 300% which might break mobile views */
-  height: 80vh;      /* Use viewport height for better responsiveness */
+  height: 100vh;      /* Use viewport height for better responsiveness */
   border: 2px solid #ccc;
   border-radius: 0.5rem;
   display: block;
