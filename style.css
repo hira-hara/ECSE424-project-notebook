@@ -107,9 +107,12 @@ main {
 }
 
 /* Updated to target the tag directly or use class="iframe" */
-iframe, .iframe {
-  width: 100%;       /* Changed from 300% which might break mobile views */
-  height: 100vh;      /* Use viewport height for better responsiveness */
+iframe,
+.iframe {
+  width: 100%;
+  /* Changed from 300% which might break mobile views */
+  height: 100vh;
+  /* Use viewport height for better responsiveness */
   border: 2px solid #ccc;
   border-radius: 0.5rem;
   display: block;
@@ -144,26 +147,35 @@ iframe, .iframe {
 
 /* Simple styles for placeholder content */
 .placeholder-text {
-    /* font-style: italic; */
-    color: #100202;
-    border: 1px dashed #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+  /* font-style: italic; */
+  color: #100202;
+  border: 1px dashed #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
 
 .file-list {
-    list-style-type: disc;
-    margin-left: 20px;
+  list-style-type: disc;
+  margin-left: 20px;
 }
 
 .file-list li {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .file-list code {
-    background-color: #eee;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-family: monospace;
+  background-color: #eee;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 600px;
 }
